@@ -4,7 +4,6 @@ import './App.css';
 import { fetchNewsData } from './util/fetchApi';
 
 function App() {
-  console.log(fetchNewsData("bitcoin"))
   return (
     <div className="App">
       hi
