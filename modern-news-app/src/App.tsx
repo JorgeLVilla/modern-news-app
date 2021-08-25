@@ -1,24 +1,23 @@
-import './App.css';
-import { fetchNewsData } from './util/fetchApi';
 import { EverythingNewsRequest } from './models/Articles';
+import { fetchNewsData } from './util/fetchApi';
+import Navbar from './components/Navbar';
 
-function App() {
-
+const App = () => {
   const getNewsData = async () => {
     try {
       const request = new EverythingNewsRequest({q: "corona"});
       const dataObject = await fetchNewsData(request);
       return dataObject;
     } catch (error) {
-      
+      console.error(error)
     }
   }
 
   getNewsData();
-  
+
   return (
-    <div className="App">
-      
+    <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
+      <Navbar />
     </div>
   );
 }
