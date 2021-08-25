@@ -1,19 +1,23 @@
+import { EverythingNewsRequest } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
-import './App.css';
-import { useState } from 'react';
+import Navbar from './components/Navbar';
 
 const App = () => {
-  const [data, setData] = useState([])
-  
-  const getData = async(search: string) => {
-    let data = await fetchNewsData(search)
-    setData(data.articles)
+  const getNewsData = async () => {
+    try {
+      const request = new EverythingNewsRequest({q: "corona"});
+      const dataObject = await fetchNewsData(request);
+      return dataObject;
+    } catch (error) {
+      console.error(error)
+    }
   }
 
+  getNewsData();
+
   return (
-    <div className="App">
-      <button onClick={() => getData("bitcoin")}>Click me :)</button>
-      {console.log(data)}
+    <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
+      <Navbar />
     </div>
   );
 }
