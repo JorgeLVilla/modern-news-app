@@ -1,4 +1,4 @@
-import {IEverythingNewsRequest} from "../models/Articles";
+import { IEverythingNewsRequest } from "../models/Articles";
 
 // return news data with a "q" search parameter
 export const fetchNewsData = async (request: IEverythingNewsRequest) => {
@@ -10,3 +10,4 @@ export const fetchNewsData = async (request: IEverythingNewsRequest) => {
         console.error(error)
     }
 }
+

@@ -38,4 +38,30 @@ export class EverythingNewsRequest implements IEverythingNewsRequest {
     }
 }
 
+export interface ISource {
+    id: string;
+    name: string;
+}
 
+export interface IArticle {
+    source: ISource;
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
+}
+
+export interface IEverythingNewsResponse {
+    status: string;
+    totalResults: number;
+    articles: IArticle[];
+}
+
+export class EverythingNewsResponse implements IEverythingNewsResponse{
+    status= "";
+    totalResults= 0;
+    articles= [];
+}
