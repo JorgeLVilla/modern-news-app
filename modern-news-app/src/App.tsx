@@ -1,23 +1,29 @@
-import './App.css';
+import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
 import { fetchTodayNewsData } from './util/fetchApi';
-import { EverythingNewsRequest } from './models/Articles';
 import { TodayNewsRequest } from './models/RecentArticles';
 
 //components
 import TodayNews from './components/TodayNews';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
+  const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
+
+  useEffect(() => {
+    getNewsData()
+  }, [])
 
   // // news data call for top section of home page
   const getNewsData = async () => {
     try {
-      const request = new EverythingNewsRequest({q: "apple"});
-      const dataObject = await fetchNewsData(request);
-      console.log(dataObject);
-      return dataObject;
+      const request = new EverythingNewsRequest({q: "corona"});
+      const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
+      setNewsData(dataObject);
     } catch (error) {
-      
+      console.error(error)
     }
   }
 
@@ -37,10 +43,11 @@ function App() {
 getTodayNewsData();
 
   // getNewsData();
-  
+
   return (
-    <div className="App">
-      
+    <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
+      <Navbar />
+      <Main newsData={newsData} />
       <TodayNews />
     </div>
   );
