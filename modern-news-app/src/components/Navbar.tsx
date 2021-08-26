@@ -6,23 +6,28 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 
-const Navbar = () => {
+interface NavProps {
+    getNewsData: Function;
+}
+
+const Navbar: React.FC<NavProps> = ({ getNewsData }) => {
+
     return (
         <NavBarStyle>
             <NavButton>
-                <img src={sports} alt="button link for sports search" />
+                <img onClick={() => getNewsData("sports")} src={sports} alt="button link for sports search" />
             </NavButton>
             <NavButton>
-                <img src={entertainment} alt="button link for entertainment search" />
+                <img onClick={() => getNewsData("entertainment")} src={entertainment} alt="button link for entertainment search" />
             </NavButton>
             <NavButton>
-                <img src={business} alt="button link for business search" />
+                <img onClick={() => getNewsData("business")} src={business} alt="button link for business search" />
             </NavButton>
             <NavButton>
-                <img src={health} alt="button link for health search" />
+                <img onClick={() => getNewsData("health")} src={health} alt="button link for health search" />
             </NavButton>
             <NavButton>
-                <img src={world} alt="button link for world search" />
+                <img onClick={() => getNewsData("world")} src={world} alt="button link for world search" />
             </NavButton>
         </NavBarStyle>
     )
