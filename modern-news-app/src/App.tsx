@@ -8,12 +8,12 @@ const App = () => {
   const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
 
   useEffect(() => {
-    getNewsData()
+    getNewsData("bitcoin")
   }, [])
 
-  const getNewsData = async () => {
+  const getNewsData = async (search: string) => {
     try {
-      const request = new EverythingNewsRequest({q: "corona"});
+      const request = new EverythingNewsRequest({q: search});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
     } catch (error) {
@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
-      <Navbar />
+      <Navbar getNewsData={getNewsData} />
       <Main newsData={newsData} />
     </div>
   );
