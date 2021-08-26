@@ -1,20 +1,25 @@
+// interface classes
 import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
 import { fetchTodayNewsData } from './util/fetchApi';
-import { TodayNewsRequest } from './models/RecentArticles';
+import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/RecentArticles';
 
-//components
+// components 
 import TodayNews from './components/TodayNews';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
+
+// react
 import { useEffect, useState } from 'react';
 
 const App = () => {
-  const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
+  const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse());
+  const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
 
   useEffect(() => {
-    getNewsData()
-  }, [])
+    // getNewsData()
+    getTodayNewsData();
+  }, []);
 
   // // news data call for top section of home page
   const getNewsData = async () => {
@@ -31,18 +36,15 @@ const App = () => {
   const getTodayNewsData = async () => {
     try {
       const request = new TodayNewsRequest();
-      const dataObject = await fetchTodayNewsData(request);
+      const dataObject: ITodayNewsResponse = await fetchTodayNewsData(request);
       console.log(dataObject);
+      setTodayNewsData(dataObject);
       return dataObject;
 
     } catch (error) {
         console.error(error);
     }
 }
-
-getTodayNewsData();
-
-  // getNewsData();
 
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>

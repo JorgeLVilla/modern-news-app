@@ -25,4 +25,30 @@ export class TodayNewsRequest implements ITodayNewsRequest {
     }
 }
 
+// response interface
+export interface ISource {
+    id: string;
+    name: string;
+}
 
+export interface IArticle {
+    source: ISource;
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
+}
+
+export interface ITodayNewsResponse {
+    totalResults: number;
+    articles: IArticle[];
+}
+
+// response class
+export class TodayNewsResponse implements ITodayNewsResponse {
+    totalResults = 0;
+    articles = [];
+}
