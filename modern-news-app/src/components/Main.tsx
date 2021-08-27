@@ -21,7 +21,6 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
 
     // Func to set they layout as repeating with a 3-1-2 article pattern
     const articleLayout = () => {
-        console.log(articleIndex)
         if(articleIndex === 4){
             articleIndex++
             ArticleSize = OneHalfArticle
