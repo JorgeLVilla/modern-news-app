@@ -2,7 +2,7 @@
 import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
 import { fetchTodayNewsData } from './util/fetchApi';
-import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/RecentArticles';
+import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/TodayArticles';
 
 // components 
 import TodayNews from './components/TodayNews';
@@ -37,7 +37,6 @@ const App = () => {
     try {
       const request = new TodayNewsRequest();
       const dataObject: ITodayNewsResponse = await fetchTodayNewsData(request);
-      console.log(dataObject);
       setTodayNewsData(dataObject);
       return dataObject;
 
@@ -50,7 +49,7 @@ const App = () => {
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
       <Navbar />
       <Main newsData={newsData} />
-      <TodayNews />
+      <TodayNews todayNewsData={todayNewsData}/>
     </div>
   );
 }

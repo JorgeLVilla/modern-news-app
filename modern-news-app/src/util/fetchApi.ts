@@ -1,5 +1,5 @@
 import { IEverythingNewsRequest } from "../models/Articles";
-import { ITodayNewsRequest } from "../models/RecentArticles";
+import { ITodayNewsRequest } from "../models/TodayArticles";
 
 const baseUrl = 'https://newsapi.org/v2/';
 

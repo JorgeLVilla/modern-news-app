@@ -43,12 +43,14 @@ export interface IArticle {
 }
 
 export interface ITodayNewsResponse {
+    status: string | null;
     totalResults: number;
     articles: IArticle[];
 }
 
 // response class
 export class TodayNewsResponse implements ITodayNewsResponse {
+    status = null;
     totalResults = 0;
     articles = [];
 }
