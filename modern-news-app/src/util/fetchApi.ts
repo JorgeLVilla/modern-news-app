@@ -17,7 +17,7 @@ export const fetchNewsData = async (request: IEverythingNewsRequest) => {
 export const fetchTodayNewsData = async (request: ITodayNewsRequest) => {
     try {
         // url for US news with todays date
-        const todayNewsUrl = `${baseUrl}top-headlines?country=us&apiKey=${request.apiKey}&publishedAt=2021-08-25`;
+        const todayNewsUrl = `${baseUrl}top-headlines?country=${request.sources}&apiKey=${request.apiKey}&pageSize=${request.pageSize}&publishedAt=2021-08-25`;
         return await fetch(todayNewsUrl).then(res => res.json());
 
     } catch (error) {

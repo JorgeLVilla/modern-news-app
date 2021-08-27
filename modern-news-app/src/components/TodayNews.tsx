@@ -15,18 +15,24 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                 <h1>Today</h1>
             </div>
             <div className="TodayNewsContent">
-                <div className="articleContainer">
-                    {todayNewsData.status ? 
+                    {todayNewsData.status ?
 
                         // map through array and return jsx for each element
                         todayNewsData.articles.map((article, i) => {
-                            console.log(article.author);
+                            // console.log(article.url);
                             return (
-                                <p key={i}>{article.author}</p>
-                            ) 
+                                // display article image, and title
+                                <div key={i} className="article">
+                                    <div className="imgWrapper">
+                                        <img src={article.urlToImage} className="articleImg" alt={article.description}/>
+                                    </div>
+                                    <div className="articleHeadingWrapper">
+                                        <h2>{article.title}</h2>
+                                    </div>
+                                </div>
+                            )
                         }) : <div>Loading...</div>}
                 </div>
-            </div>
         </div>
     )
 }
