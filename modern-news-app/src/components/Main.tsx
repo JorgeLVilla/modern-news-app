@@ -1,17 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import { IEverythingNewsResponse } from "../models/Articles";
-import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style"
+import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
+import sports from '../assets/sports.png';
+import entertainment from '../assets/entertainment.png';
+import business from '../assets/business.png';
+import health from '../assets/health.png';
+import world from '../assets/world.png';
 
 interface MainProps {
     newsData: IEverythingNewsResponse
 }
 
-const MainStyled = styled.div`
+const ArticlesStyled = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+`
+
+const TitleStyled = styled.div`
+    font-size: 5em;
+    padding-left: 1.5em;
+
+    & img{
+        height: 1em;
+        width: 1em;
+        padding-left: 0.3em;
+    }
 `
 
 const Main: React.FC<MainProps> = ({ newsData }) => {
@@ -36,21 +52,43 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
         }
     }
 
+    const searchTitleCheck = () => {
+        if(newsData.search === "sports"){
+            return <TitleStyled style={{ color: "#FFA55C"}}>Sports<img src={sports} alt="football"/></TitleStyled>
+        } else if(newsData.search === "entertainment"){
+            return <TitleStyled style={{ color: "#1FC8A3"}}>Entertainment<img src={entertainment} alt="camera"/></TitleStyled>
+        } else if(newsData.search === "business"){
+            return <TitleStyled style={{ color: "#6F81D8"}}>Business<img src={business} alt="stock chart"/></TitleStyled>
+        } else if(newsData.search === "health"){
+            return <TitleStyled style={{ color: "#00C0C8"}}>Health<img src={health} alt="heart"/></TitleStyled>
+        } else if(newsData.search === "world"){
+            return <TitleStyled style={{ color: "#FF9A86"}}>World<img src={world} alt="world"/></TitleStyled>
+        } else {
+            return <TitleStyled>You searched for "{newsData.search}"</TitleStyled>
+        }
+    }
+
     return(
-        <MainStyled>
+        <>
             {newsData.status ? (
-                newsData.articles.map((article, index) => {
-                    articleLayout()
-                    return <ArticleSize key={index}>
-                        <img src={article.urlToImage} alt="What the article is trying to explain"/>
-                        <div className="info-container">
-                            <a className="title" href={article.url}>{article.title}</a>
-                            <div>{article.author}</div>
-                        </div>
-                    </ArticleSize>
-                })
+                <div>
+                    {searchTitleCheck()}
+                    <ArticlesStyled>
+                        {newsData.articles.map((article, index) => {
+                            articleLayout();
+                            
+                            return <ArticleSize key={index}>
+                                <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                <div className="info-container">
+                                    <a className="title" href={article.url}>{article.title}</a>
+                                    <div>{article.author}</div>
+                                </div>
+                            </ArticleSize>
+                        })}
+                    </ArticlesStyled>
+                </div>
             ) : <div>Loading...</div>}
-        </MainStyled>
+        </>
     )
 }
 

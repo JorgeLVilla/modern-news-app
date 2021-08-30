@@ -4,7 +4,9 @@ import { IEverythingNewsRequest } from "../models/Articles";
 export const fetchNewsData = async (request: IEverythingNewsRequest) => {
     try {
         const baseUrl = `https://newsapi.org/v2/everything?q=${request.q}&apiKey=${request.apiKey}`;
-        return await fetch(baseUrl).then(res => res.json());
+        const newsResponse = await fetch(baseUrl).then(res => res.json());
+        newsResponse.search = request.q
+        return newsResponse
     } catch (error) {
         console.error(error)
     }
