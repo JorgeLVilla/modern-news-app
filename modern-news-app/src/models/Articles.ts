@@ -55,13 +55,15 @@ export interface IArticle {
 }
 
 export interface IEverythingNewsResponse {
-    status: string;
+    status: string | null;
     totalResults: number;
     articles: IArticle[];
+    search: string;
 }
 
 export class EverythingNewsResponse implements IEverythingNewsResponse{
-    status= "";
+    status= null;
     totalResults= 0;
     articles= [];
+    search= ""
 }

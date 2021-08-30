@@ -17,14 +17,21 @@ const App = () => {
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
 
   useEffect(() => {
+<<<<<<< HEAD
     // getNewsData()
     getTodayNewsData();
   }, []);
 
   // // news data call for top section of home page
   const getNewsData = async () => {
+=======
+    getNewsData("bitcoin")
+  }, [])
+
+  const getNewsData = async (search: string) => {
+>>>>>>> 26b6d3eb7f70df0ce5e204d189d806c61ef842e1
     try {
-      const request = new EverythingNewsRequest({q: "corona"});
+      const request = new EverythingNewsRequest({q: search});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
     } catch (error) {
@@ -47,7 +54,7 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
-      <Navbar />
+      <Navbar getNewsData={getNewsData} />
       <Main newsData={newsData} />
       <TodayNews todayNewsData={todayNewsData}/>
     </div>
