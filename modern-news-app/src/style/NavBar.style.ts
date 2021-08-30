@@ -4,5 +4,5 @@ export const NavBarStyle = styled.nav`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 1em;
+    padding: 4em 2em;
 `

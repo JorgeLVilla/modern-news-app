@@ -1,5 +1,5 @@
 import { NavButton } from '../style/NavButton.style';
-import { NavBarStyle } from '../style/NavBar.style'
+import { NavBarStyle } from '../style/NavBar.style';
 import sports from '../assets/sports.png';
 import entertainment from '../assets/entertainment.png';
 import business from '../assets/business.png';

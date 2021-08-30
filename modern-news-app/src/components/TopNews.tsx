@@ -5,17 +5,15 @@ interface TopNewsProps {
 }
 
 const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
-    
-    return (
-        <div>
-            Top News 
-             <div className="Top-News-Container">
-        {topNewsData.status ?
-        
-        topNewsData.articles.map((article, i) => {
+  return (
+    <div>
+      Top News
+      <div className="Top-News-Container">
+        {topNewsData.status ? (
+          topNewsData.articles.map((article, i) => {
             return (
-                <div key={i} >
-                    <img src={article.urlToImage} alt={"hi"} />
+              <div key={i}>
+                <img src={article.urlToImage} alt={"hi"} />
                 <div>{article.title}</div>
                 <div>{article.author}</div>
                 <div>{article.description}</div>
@@ -24,12 +22,16 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
                 </a>
                 <div>{article.publishedAt}</div>
                 <div>{article.content}</div>
-                </div>
-            )
-        }) : <div>Loading...</div> };
+              </div>
+            );
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
+        ;
       </div>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default TopNews;
