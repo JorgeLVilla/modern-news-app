@@ -81,9 +81,9 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
             <TodayNewsArticles>
                 {returnFeaturedArticle()}
 
-                <StandardArticlesContainer>
-                    {returnStandardArticles()}
-                </StandardArticlesContainer>
+            <StandardArticlesContainer>
+                {returnStandardArticles()}
+            </StandardArticlesContainer>
 
             </TodayNewsArticles>
             
