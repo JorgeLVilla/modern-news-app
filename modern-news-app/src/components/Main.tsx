@@ -52,22 +52,6 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
         }
     }
 
-    // const searchTitleCheck = () => {
-    //     if(newsData.search === "sports"){
-    //         return <TitleStyled style={{ color: "#FFA55C"}}>Sports<img src={sports} alt="football"/></TitleStyled>
-    //     } else if(newsData.search === "entertainment"){
-    //         return <TitleStyled style={{ color: "#1FC8A3"}}>Entertainment<img src={entertainment} alt="camera"/></TitleStyled>
-    //     } else if(newsData.search === "business"){
-    //         return <TitleStyled style={{ color: "#6F81D8"}}>Business<img src={business} alt="stock chart"/></TitleStyled>
-    //     } else if(newsData.search === "health"){
-    //         return <TitleStyled style={{ color: "#00C0C8"}}>Health<img src={health} alt="heart"/></TitleStyled>
-    //     } else if(newsData.search === "world"){
-    //         return <TitleStyled style={{ color: "#FF9A86"}}>World<img src={world} alt="world"/></TitleStyled>
-    //     } else {
-    //         return <TitleStyled>You searched for "{newsData.search}"</TitleStyled>
-    //     }
-    // }
-
     const searchTitleCheck = () => {
         switch(newsData.search){
             case "sports": return <TitleStyled style={{ color: "#FFA55C"}}>Sports<img src={sports} alt="football"/></TitleStyled>;
