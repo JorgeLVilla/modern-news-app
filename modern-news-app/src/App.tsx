@@ -47,7 +47,6 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
-      {console.log("newsData ", newsData)}
       <Navbar getNewsData={getNewsData} />
       <Main newsData={newsData} />
       <TodayNews todayNewsData={todayNewsData}/>
