@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const NavButtonsStyle = styled.nav`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+`
+
 export const NavButton = styled.button`
     height: 60px;
     width: 60px;
