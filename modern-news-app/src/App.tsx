@@ -17,7 +17,6 @@ const App = () => {
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
 
   useEffect(() => {
-    // getNewsData("bitcoin");
     getTodayNewsData();
   }, []);
 
