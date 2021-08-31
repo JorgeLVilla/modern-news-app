@@ -5,7 +5,7 @@ export const NavButton = styled.button`
     width: 60px;
     background-color: black;
     color: white;
-    margin-left: 3vw;
+    margin-left: 5vw;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 7px white;

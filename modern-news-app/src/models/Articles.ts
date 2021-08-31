@@ -1,6 +1,6 @@
-export interface INewsRequest {
+export interface IEverythingNewsRequest {
     apiKey: string;
-    q?: string;
+    q: string;
     pageSize: number;
     sortBy: SortBy;
     qInTitle: string;
@@ -15,7 +15,7 @@ export interface INewsRequest {
 
 type SortBy = "relevancy" | "popularity" | "publishedAt";
 
-export class NewsRequest implements INewsRequest {
+export class EverythingNewsRequest implements IEverythingNewsRequest {
     apiKey= process.env.REACT_APP_NEWS_API_KEY || "";
     q= "";
     pageSize= 20;
@@ -29,7 +29,7 @@ export class NewsRequest implements INewsRequest {
     language= "en";
     page= 1;
 
-    constructor(configOverride?: Partial<INewsRequest>) {
+    constructor(configOverride?: Partial<IEverythingNewsRequest>) {
         if(configOverride) {
             Object.assign(this, configOverride);
             this.q = encodeURIComponent(this.q);
@@ -58,14 +58,12 @@ export interface IEverythingNewsResponse {
     status: string | null;
     totalResults: number;
     articles: IArticle[];
-    search: string;
 }
 
 export class EverythingNewsResponse implements IEverythingNewsResponse{
     status= null;
     totalResults= 0;
     articles= [];
-    search= "";
 }
 
 //Interface for Top News component
@@ -83,12 +81,10 @@ export class TopNewsResponse implements ITopNewsResponse {
    status = null;
    totalResults= 0;
    articles= [];
-   search= "";
 }
 
 export interface ITopNewsResponse {
     status: string | null;
     totalResults: number;
     articles: IArticle[];
-    search: string;
 }
