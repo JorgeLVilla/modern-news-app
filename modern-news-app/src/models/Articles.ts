@@ -58,12 +58,35 @@ export interface IEverythingNewsResponse {
     status: string | null;
     totalResults: number;
     articles: IArticle[];
-    search: string;
+    search?: string;
 }
 
 export class EverythingNewsResponse implements IEverythingNewsResponse{
     status= null;
     totalResults= 0;
     articles= [];
-    search= ""
+    search= "";
+}
+
+//Interface for Top News component
+export interface ITopNewsRequest {
+    apiKey: string;
+    country: string;
+    category: string;
+    sources: string[];
+    q: string;
+    pageSize: number;
+    page: number;
+}
+
+export class TopNewsResponse implements ITopNewsResponse {
+   status = null;
+   totalResults= 0;
+   articles= [];
+}
+
+export interface ITopNewsResponse {
+    status: string | null;
+    totalResults: number;
+    articles: IArticle[];
 }

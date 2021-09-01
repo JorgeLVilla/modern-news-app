@@ -1,6 +1,5 @@
 import React from 'react';
 import { ITodayNewsResponse } from '../models/TodayArticles';
-// import { IArticle } from '../models/Articles';
 import {
     TodayNewsSection, 
     TitleContainer, 
