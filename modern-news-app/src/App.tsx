@@ -17,14 +17,11 @@ const App = () => {
   const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new EverythingNewsResponse())
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
 
-  useEffect(() => {
-    getTodayNewsData();
-  }, []);
-
   // news data call for top section of home page
 
   useEffect(() => {
-    getTopNewsData("top-headlines")
+    getTodayNewsData();
+    getTopNewsData("top-headlines");
   }, [])
 
   const getNewsData = async (search: string) => {
@@ -64,7 +61,6 @@ const App = () => {
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
       <Navbar getNewsData={getNewsData} />
       <TopNews topNewsData={topNewsData} />
-      {/* <Main newsData={newsData} /> */}
       <Main newsData={newsData} />
       <TodayNews todayNewsData={todayNewsData}/>
     </div>
