@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { IEverythingNewsResponse } from "../models/Articles";
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
@@ -7,10 +7,6 @@ import entertainment from '../assets/entertainment.png';
 import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
-
-interface MainProps {
-    newsData: IEverythingNewsResponse
-}
 
 const ArticlesStyled = styled.div`
     display: flex;
@@ -22,7 +18,7 @@ const ArticlesStyled = styled.div`
 const TitleStyled = styled.div`
     font-size: 5em;
     padding-left: 1.5em;
-
+    
     & img{
         height: 1em;
         width: 1em;
@@ -30,13 +26,23 @@ const TitleStyled = styled.div`
     }
 `
 
+interface MainProps {
+    newsData: IEverythingNewsResponse
+}
+
 const Main: React.FC<MainProps> = ({ newsData }) => {
+
+    const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
 
     let ArticleSize = OneThirdArticle
     let articleIndex = 0
 
+    const enlarge = {
+        border: "red solid 3px"
+    }
+
     // Func to set they layout as repeating with a 3-1-2 article pattern
-    const articleLayout = () => {
+    const articleLayout = ():void => {
         if(articleIndex === 4){
             articleIndex++
             ArticleSize = OneHalfArticle
@@ -71,11 +77,14 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();
-                            
-                            return <ArticleSize key={index}>
+                            return <ArticleSize 
+                                style={enlargeArticle === index ? enlarge : {}} 
+                                key={index} 
+                                onClick={() => {setEnlargeArticle(index)}}
+                            >
                                 <img src={article.urlToImage} alt="What the article is trying to explain"/>
                                 <div className="info-container">
-                                    <a className="title" href={article.url}>{article.title}</a>
+                                    <div className="title" >{article.title}</div>
                                     <div>{article.author}</div>
                                 </div>
                             </ArticleSize>
