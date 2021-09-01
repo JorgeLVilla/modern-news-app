@@ -26,6 +26,53 @@ const TitleStyled = styled.div`
     }
 `
 
+const EnlargedArticle = styled.div`
+    height: auto;
+    width: 103.5em;
+    margin: 3em 5em;
+    display: flex;
+    flex-direction: row;
+
+    & img{
+        height: 30em;
+        width: 50em;
+        border-radius: 10px;
+        box-shadow: 4px 4px 7px grey;
+        margin-right: 2em;
+    }
+
+    & button{
+        height: 2em;
+        width: 2em;
+        color: white;
+        background-color: black;
+        border: white solid 1px;
+        border-radius: 50%;
+        position: relative;
+        right: 3em;
+        top: 1em;
+        box-shadow: 0 0 7px white;
+    }
+
+    & .info-container{
+        width: 51em;
+        box-shadow: 4px 4px 7px grey;
+        background-color: black;
+        border-radius: 10px;
+        padding: 0.5em;
+
+        & .title{
+            width: 95%;
+            display: block;
+            font-size: 1.8em;
+            font-weight: 400;
+            text-decoration: none;
+            color: white;
+            padding-bottom: 0.5em;
+        }
+    }
+`
+
 interface MainProps {
     newsData: IEverythingNewsResponse
 }
@@ -37,24 +84,20 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
     let ArticleSize = OneThirdArticle
     let articleIndex = 0
 
-    const enlarge = {
-        border: "red solid 3px"
-    }
-
     // Func to set they layout as repeating with a 3-1-2 article pattern
     const articleLayout = ():void => {
         if(articleIndex === 4){
-            articleIndex++
-            ArticleSize = OneHalfArticle
+            articleIndex++;
+            ArticleSize = OneHalfArticle;
         } else if(articleIndex === 5){
-            articleIndex = 0
-            ArticleSize = OneHalfArticle
+            articleIndex = 0;
+            ArticleSize = OneHalfArticle;
         }else if(articleIndex === 3){
-            articleIndex++
-            ArticleSize = OneArticle
+            articleIndex++;
+            ArticleSize = OneArticle;
         } else{
-            articleIndex++
-            ArticleSize = OneThirdArticle
+            articleIndex++;
+            ArticleSize = OneThirdArticle;
         }
     }
 
@@ -77,8 +120,9 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();
-                            return <ArticleSize 
-                                style={enlargeArticle === index ? enlarge : {}} 
+                            return (enlargeArticle !== index ? 
+
+                            <ArticleSize 
                                 key={index} 
                                 onClick={() => {setEnlargeArticle(index)}}
                             >
@@ -87,7 +131,16 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
                                     <div className="title" >{article.title}</div>
                                     <div>{article.author}</div>
                                 </div>
-                            </ArticleSize>
+                            </ArticleSize> :
+
+                            <EnlargedArticle key={index}>
+                                <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                <div className="info-container">
+                                    <div className="title" >{article.title}</div>
+                                    <div>{article.author}</div>
+                                </div>
+                                <button onClick={() => {setEnlargeArticle(null)}}>X</button>
+                            </EnlargedArticle>)
                         })}
                     </ArticlesStyled>
                 </div>
