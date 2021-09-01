@@ -1,5 +1,6 @@
 // interface classes
 import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
+import { ITopNewsResponse } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
 import { fetchTodayNewsData } from './util/fetchApi';
 import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/TodayArticles';
@@ -8,25 +9,36 @@ import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './model
 import TodayNews from './components/TodayNews';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
-
-// react
+import TopNews from './components/TopNews';
 import { useEffect, useState } from 'react';
 
 const App = () => {
-  const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse());
+  const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
+  const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new EverythingNewsResponse())
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
+
+  // news data call for top section of home page
 
   useEffect(() => {
     getTodayNewsData();
-  }, []);
-
-  // news data call for top section of home page
+    getTopNewsData("top-headlines");
+  }, [])
 
   const getNewsData = async (search: string) => {
     try {
       const request = new EverythingNewsRequest({q: search});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const getTopNewsData = async (search: string) => {
+    try {
+      const request = new EverythingNewsRequest({q: search});
+      const dataObject: ITopNewsResponse = await fetchNewsData(request);
+      setTopNewsData(dataObject);
     } catch (error) {
       console.error(error)
     }
@@ -48,6 +60,7 @@ const App = () => {
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
       <Navbar getNewsData={getNewsData} />
+      <TopNews topNewsData={topNewsData} />
       <Main newsData={newsData} />
       <TodayNews todayNewsData={todayNewsData}/>
     </div>

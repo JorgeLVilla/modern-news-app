@@ -7,9 +7,7 @@ const baseUrl = 'https://newsapi.org/v2/';
 export const fetchNewsData = async (request: IEverythingNewsRequest) => {
     try {
         const baseUrl = `https://newsapi.org/v2/everything?q=${request.q}&apiKey=${request.apiKey}`;
-        const newsResponse = await fetch(baseUrl).then(res => res.json());
-        newsResponse.search = request.q
-        return newsResponse
+        return await fetch(baseUrl).then(res => res.json());
     } catch (error) {
         console.error(error)
     }
