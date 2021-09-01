@@ -1,18 +1,8 @@
 import React from 'react';
+import styled from "styled-components";
 import { ITodayNewsResponse } from '../models/TodayArticles';
-import {
-    TodayNewsSection, 
-    TitleContainer, 
-    TodayNewsArticles, 
-    FeaturedArticle,
-    StandardArticlesContainer,
-    StandardArticle,
-    FeaturedImgWrapper,
-    StandardImgWrapper,
-    FeaturedImg,
-    StandardImg,
-    ArticleHeadingWrapper
-} from '../style/TodayNews.style';
+import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
+import { MainPageTitle } from "../style/SectionTitles.style";
 
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
@@ -21,25 +11,25 @@ interface MainProps {
 
 // enable react props
 const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
+
+    let ArticleSize = OneThirdArticle
+    let articleIndex = 0
         
     // seperate TodayNews from the rest of articles stored in props
     const returnFeaturedArticle = () => {
-        const article = todayNewsData.articles.slice(0, 1)[0];
+        const article = todayNewsData.articles[0];
         
         return (
             <>
             {todayNewsData.status? 
-                <FeaturedArticle>
-                    <FeaturedImgWrapper>
-                        <FeaturedImg src={article.urlToImage} className="articleImg" alt={article.description}/>
-                    </FeaturedImgWrapper>
-                    <ArticleHeadingWrapper>
-                        <h2>{article.title}</h2>
-                    </ArticleHeadingWrapper>
-                </FeaturedArticle>
+                <OneArticle>
+                        <img src={article.urlToImage} className="articleImg" alt={article.description}/>
+                    <div className="info-container">
+                        <h2 className="title">{article.title}</h2>
+                    </div>
+                </OneArticle>
                 : "Loading..."}
             </>
-
             )
         }
 
@@ -54,14 +44,12 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                 articles.map((article, i) => {
 
                     return (
-                        <StandardArticle key={i}>
-                            <StandardImgWrapper>
-                                <StandardImg src={article.urlToImage} alt={article.description} />
-                                <ArticleHeadingWrapper>
-                                    {article.content}
-                                </ArticleHeadingWrapper>
-                            </StandardImgWrapper>
-                        </StandardArticle>
+                        <OneThirdArticle key={i}>
+                            <img src={article.urlToImage} alt={article.description} />
+                            <div className="info-container">
+                                {article.content}
+                            </div>
+                        </OneThirdArticle>
                     )
 
                 }) 
@@ -72,22 +60,15 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
     }    
 
     return (
-        <TodayNewsSection>
-            <TitleContainer>
-                <h1>Today</h1>
-            </TitleContainer>
+        <>
+            <div>
+                <MainPageTitle>Today</MainPageTitle>
+            </div>
             
-            <TodayNewsArticles>
-                {returnFeaturedArticle()}
+            {returnFeaturedArticle()}
+            {returnStandardArticles()}
 
-            <StandardArticlesContainer>
-                {returnStandardArticles()}
-            </StandardArticlesContainer>
-
-            </TodayNewsArticles>
-            
-
-        </TodayNewsSection>
+        </>
         
     )
 }

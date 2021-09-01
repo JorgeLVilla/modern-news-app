@@ -8,7 +8,7 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 
-const ArticlesStyled = styled.div`
+export const ArticlesStyled = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
