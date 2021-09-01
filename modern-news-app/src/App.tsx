@@ -29,7 +29,6 @@ const App = () => {
       const request = new EverythingNewsRequest({q: search});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
-      console.log(dataObject)
     } catch (error) {
       console.error(error)
     }
