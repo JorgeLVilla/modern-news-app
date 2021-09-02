@@ -8,6 +8,10 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 
+interface IEnlargeArticleProps {
+    mainColor: string;
+}
+
 export const ArticlesStyled = styled.div`
     display: flex;
     flex-direction: row;
@@ -26,7 +30,7 @@ const TitleStyled = styled.div`
     }
 `
 
-const EnlargedArticle = styled.div`
+const EnlargedArticle = styled.div<IEnlargeArticleProps>`
     height: auto;
     width: 103.5em;
     margin: 3em 5em;
@@ -37,7 +41,7 @@ const EnlargedArticle = styled.div`
         height: 30em;
         width: 50em;
         border-radius: 10px;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-right: 2em;
     }
 
@@ -51,12 +55,12 @@ const EnlargedArticle = styled.div`
         position: relative;
         right: 3em;
         top: 1em;
-        box-shadow: 0 0 7px white;
+        box-shadow: 0 0 7px ${props => props.mainColor};
     }
 
     & .info-container{
         width: 51em;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
@@ -120,14 +124,27 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
         }
     }
 
+    // Setting the Title of the Main page based off of what button was pressed
     const searchTitleCheck = () => {
         switch(newsData.search){
-            case "sports": return <TitleStyled style={{ color: "#FFA55C"}}>Sports<img src={sports} alt="football"/></TitleStyled>;
-            case "entertainment": return <TitleStyled style={{ color: "#1FC8A3"}}>Entertainment<img src={entertainment} alt="camera"/></TitleStyled>;
-            case "business": return <TitleStyled style={{ color: "#6F81D8"}}>Business<img src={business} alt="stock chart"/></TitleStyled>;
-            case "health": return <TitleStyled style={{ color: "#00C0C8"}}>Health<img src={health} alt="heart"/></TitleStyled>;
-            case "world": return <TitleStyled style={{ color: "#FF9A86"}}>World<img src={world} alt="world"/></TitleStyled>;
-            default : return <TitleStyled>You searched for "{newsData.search}"</TitleStyled>;
+            case "sports": return <div>Sports<img src={sports} alt="football"/></div>;
+            case "entertainment": return <>Entertainment<img src={entertainment} alt="camera"/></>;
+            case "business": return <>Business<img src={business} alt="stock chart"/></>;
+            case "health": return <>Health<img src={health} alt="heart"/></>;
+            case "world": return <>World<img src={world} alt="world"/></>;
+            default : return <>You searched for {newsData.search}</>;
+        }
+    }
+
+    // Set things like the Title color and the box shadow color
+    const mainColorCheck = (): string => {
+        switch(newsData.search){
+            case "sports": return "#FFA55C" ;
+            case "entertainment": return "#1FC8A3";
+            case "business": return "#6F81D8";
+            case "health": return "#00C0C8";
+            case "world": return "#FF9A86";
+            default : return "white";
         }
     }
 
@@ -135,17 +152,21 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
         <>
             {newsData.status ? (
                 <div>
-                    {searchTitleCheck()}
+                    <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();
                             return (enlargeArticle !== index ? 
 
-                            <ArticleSize 
+                            <ArticleSize
                                 key={index} 
+                                mainColor={mainColorCheck()}
                                 onClick={() => {setEnlargeArticle(index)}}
                             >
-                                <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                <div className="img-block">
+                                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                    <span className="click-here">Click to see more</span>
+                                </div>
                                 <div className="info-container">
                                     <div>
                                         <div className="title" >{article.title}</div>
@@ -158,7 +179,7 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
                                 </div>
                             </ArticleSize> :
 
-                            <EnlargedArticle key={index}>
+                            <EnlargedArticle key={index} mainColor={mainColorCheck()}>
                                 <img src={article.urlToImage} alt="What the article is trying to explain"/>
                                 <div className="info-container">
                                     <div>
