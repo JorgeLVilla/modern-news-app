@@ -1,3 +1,4 @@
+import { EverythingNewsResponse } from '../models/Articles';
 import sports from '../assets/sports.png';
 import entertainment from '../assets/entertainment.png';
 import business from '../assets/business.png';
@@ -6,7 +7,7 @@ import world from '../assets/world.png';
 import icon from '../assets/magazine.png';
 import styled from 'styled-components';
 
-const NavBarStyle = styled.nav`
+export const NavBarStyle = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +16,7 @@ const NavBarStyle = styled.nav`
     & div{
         padding-left: 1.2em;
         font-size: 4em;
+        cursor: pointer;
     }
 `
 export const NavButtonsStyle = styled.nav`
@@ -49,13 +51,14 @@ export const NavButtonsStyle = styled.nav`
 
 interface NavProps {
     getNewsData: Function;
+    setNewsData: Function;
 }
 
-const Navbar: React.FC<NavProps> = ({ getNewsData }) => {
+const Navbar: React.FC<NavProps> = ({ getNewsData, setNewsData }) => {
 
     return (
         <NavBarStyle>
-            <div>ModernNews<img src={icon} alt="A magazine icon"/></div>
+            <div onClick={() => setNewsData(new EverythingNewsResponse())}>ModernNews<img src={icon} alt="A magazine icon"/></div>
             <NavButtonsStyle>
                 <NavButton>
                     <img onClick={() => getNewsData("sports")} src={sports} alt="button link for sports search" />
