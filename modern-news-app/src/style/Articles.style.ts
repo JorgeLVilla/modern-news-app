@@ -18,6 +18,9 @@ export const OneThirdArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         & .title{
             display: block;
@@ -26,6 +29,16 @@ export const OneThirdArticle = styled.div`
             text-decoration: none;
             color: white;
             padding-bottom: 0.5em;
+        }
+
+        & .description{
+            display: none;
+        }
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
     }
 `
@@ -50,6 +63,15 @@ export const OneArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         & .title{
             display: block;
@@ -57,7 +79,6 @@ export const OneArticle = styled.div`
             font-weight: 400;
             text-decoration: none;
             color: white;
-            padding-bottom: 0.5em;
         }
     }
 `
@@ -81,6 +102,15 @@ export const OneHalfArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         & .title{
             display: block;
@@ -88,7 +118,6 @@ export const OneHalfArticle = styled.div`
             font-weight: 400;
             text-decoration: none;
             color: white;
-            padding-bottom: 0.5em;
         }
     }
 `
