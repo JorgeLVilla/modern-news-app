@@ -59,7 +59,7 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
-      <Navbar getNewsData={getNewsData} />
+      <Navbar getNewsData={getNewsData} setNewsData={setNewsData} />
       {newsData.status ?
       <Main newsData={newsData} /> :
       <>
