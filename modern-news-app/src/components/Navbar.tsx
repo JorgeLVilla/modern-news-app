@@ -45,6 +45,7 @@ export const NavButtonsStyle = styled.nav`
     & img{
         height: 75%;
         width: 80%;
+        cursor:pointer;
     }
 `
 
