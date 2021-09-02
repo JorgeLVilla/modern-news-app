@@ -60,6 +60,9 @@ const EnlargedArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         & .title{
             width: 95%;
@@ -69,6 +72,22 @@ const EnlargedArticle = styled.div`
             text-decoration: none;
             color: white;
             padding-bottom: 0.5em;
+        }
+
+        & .url{
+            display: inline-block;
+            color: black;
+            text-decoration: none;
+            background-color: white;
+            border-radius: 5px;
+            padding: 0 0.5em;
+            margin-top: 1em;
+        }
+        
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
     }
 `
@@ -128,16 +147,30 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
                             >
                                 <img src={article.urlToImage} alt="What the article is trying to explain"/>
                                 <div className="info-container">
-                                    <div className="title" >{article.title}</div>
-                                    <div>{article.author}</div>
+                                    <div>
+                                        <div className="title" >{article.title}</div>
+                                        <div className="description">Description:<br/>{article.description}</div>
+                                    </div>
+                                    <div className="bottom-info">
+                                        <div>Author: {article.author}</div>
+                                        <div>From: {article.source.name}</div>
+                                    </div>
                                 </div>
                             </ArticleSize> :
 
                             <EnlargedArticle key={index}>
                                 <img src={article.urlToImage} alt="What the article is trying to explain"/>
                                 <div className="info-container">
-                                    <div className="title" >{article.title}</div>
-                                    <div>{article.author}</div>
+                                    <div>
+                                        <div className="title" >{article.title}</div>
+                                        <div className="description">Description:<br/>{article.description}</div><br/>
+                                        <div>More Info:<br/>{article.content}</div>
+                                        <a className="url" href={article.url} target="_blank" rel="noreferrer">To read more click here!</a>
+                                    </div>
+                                    <div className="bottom-info">
+                                        <div>Author: {article.author}</div>
+                                        <div>From: {article.source.name}</div>
+                                    </div>
                                 </div>
                                 <button onClick={() => {setEnlargeArticle(null)}}>X</button>
                             </EnlargedArticle>)
