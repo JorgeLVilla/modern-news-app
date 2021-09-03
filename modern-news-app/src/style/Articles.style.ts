@@ -86,7 +86,7 @@ export const OneThirdArticle = styled.div<IArticleProps>`
     }
 `
 
-export const OneHalfArticle = styled.div`
+export const OneHalfArticle = styled.div<IArticleProps>`
     height: auto;
     width: 46.5em;
     margin: 3em 4em;
@@ -94,14 +94,14 @@ export const OneHalfArticle = styled.div`
     & img {
         height: 25em;
         width: 46.5em;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-bottom: 1em;
         border-radius: 10px;
     }
 
     & .info-container {
         height: 10em;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
@@ -146,7 +146,7 @@ export const OneHalfArticle = styled.div`
     }
 `
 
-export const OneArticle = styled.div`
+export const OneArticle = styled.div<IArticleProps>`
     height: 28em;
     width: 100%;
     margin: 3em 5em;
@@ -164,13 +164,13 @@ export const OneArticle = styled.div`
         height: 28em;
         width: 50em;
         border-radius: 10px;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-right: 2em;
     }
 
     & .info-container {
         width: 51em;
-        box-shadow: 4px 4px 7px grey;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;

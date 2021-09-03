@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { ITodayNewsResponse } from "../models/TodayArticles";
-import { OneArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
+import Article from "./Article";
+import ExpandedArticle from "./ExpandedArticle";
+import { ArticlesStyled } from "./Main";
 
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
@@ -10,96 +12,49 @@ interface MainProps {
 
 // enable react props
 const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
-  let ArticleSize = OneThirdArticle;
+  const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
 
-  // seperate TodayNews from the rest of articles stored in props
-  const returnFeaturedArticle = () => {
-    const article = todayNewsData.articles[0];
+  let ArticleSize = 3;
+  let articleIndex = 0;
+  let mainColorCheck = "white";
 
-    return (
-      <>
-        {todayNewsData.status ? (
-          <OneArticle>
-            <ArticleSize>
-              <div className="img-block">
-                <img
-                  src={article.urlToImage}
-                  alt="What the article is trying to explain"
-                />
-                <span className="click-here">Click to see more</span>
-              </div>
-              <div className="info-container">
-                <div>
-                  <div className="title">{article.title}</div>
-                  <div className="description">
-                    Description:
-                    <br />
-                    {article.description}
-                  </div>
-                </div>
-                <div className="bottom-info">
-                  <div>Author: {article.author}</div>
-                  <div>From: {article.source.name}</div>
-                </div>
-              </div>
-            </ArticleSize>
-          </OneArticle>
-        ) : (
-          "Loading..."
-        )}
-      </>
-    );
-  };
-
-  // map through rest of articles with a different grouping
-  const returnStandardArticles = () => {
-    const articles = todayNewsData.articles.slice(1);
-
-    return (
-      <>
-        {todayNewsData.status
-          ? articles.map((article, i) => {
-              return (
-                <OneThirdArticle>
-                  <ArticleSize>
-                    <div className="img-block">
-                      <img
-                        src={article.urlToImage}
-                        alt="What the article is trying to explain"
-                      />
-                      <span className="click-here">Click to see more</span>
-                    </div>
-                    <div className="info-container">
-                      <div>
-                        <div className="title">{article.title}</div>
-                        <div className="description">
-                          Description:
-                          <br />
-                          {article.description}
-                        </div>
-                      </div>
-                      <div className="bottom-info">
-                        <div>Author: {article.author}</div>
-                        <div>From: {article.source.name}</div>
-                      </div>
-                    </div>
-                  </ArticleSize>
-                </OneThirdArticle>
-              );
-            })
-          : "Loading..."}
-      </>
-    );
+  // Func to set they layout as repeating with a 3-1-2 article pattern
+  const articleLayout = (): void => {
+    if (articleIndex === 0) {
+        articleIndex++;
+        ArticleSize = 1;
+    } else {
+      articleIndex++;
+      ArticleSize = 3;
+    }
   };
 
   return (
     <>
-      <div>
-        <MainPageTitle>Today</MainPageTitle>
-      </div>
-
-      {returnFeaturedArticle()}
-      {returnStandardArticles()}
+      <MainPageTitle>Today News</MainPageTitle>
+      <ArticlesStyled>
+        {todayNewsData.status ? (
+          todayNewsData.articles.map((article, i) => {
+            articleLayout();
+            return (enlargeArticle !== 1 ? 
+              <Article 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle} 
+                  article={article} 
+                  ArticleSize={ArticleSize}
+              /> :
+              <ExpandedArticle 
+                  article={article} 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle}
+              />)
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
+      </ArticlesStyled>
     </>
   );
 };
