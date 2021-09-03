@@ -55,7 +55,7 @@ const TitleStyled = styled.div`
     }
 `
 
-const EnlargedArticle = styled.div<IEnlargeArticleProps>`
+export const EnlargedArticle = styled.div<IEnlargeArticleProps>`
     height: auto;
     width: 103.5em;
     margin: 3em 5em;
@@ -133,7 +133,7 @@ interface MainProps {
     setNewsData: Function;
 }
 
-interface IEnlargeArticleProps {
+export interface IEnlargeArticleProps {
     mainColor: string;
 }
 
