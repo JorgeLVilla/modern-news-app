@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
+import styled from "styled-components";
+import { SectionContainer } from "../style/Wrappers.style";
 import { EnlargedArticle } from "./Main";
-import { ArticlesStyled } from "./Main";
 import {
   OneArticle,
   OneHalfArticle,
   OneThirdArticle,
 } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
+import { ArticlesStyled } from "./Main";
+
 
 interface TopNewsProps {
   topNewsData: IEverythingNewsResponse;
@@ -21,13 +24,7 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
 
   // Func to set they layout as repeating with a 3-1-2 article pattern
   const articleLayout = (): void => {
-    if (articleIndex === 4) {
-      articleIndex++;
-      ArticleSize = OneArticle;
-    } else if (articleIndex === 5) {
-      articleIndex = 0;
-      ArticleSize = OneHalfArticle;
-    } else if (articleIndex === 3) {
+    if (articleIndex === 0) {
       articleIndex++;
       ArticleSize = OneArticle;
     } else {
@@ -39,9 +36,9 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
   return (
     <>
       <MainPageTitle>Top News</MainPageTitle>
-      <ArticlesStyled>
         {topNewsData.status ? (
-          topNewsData.articles.map((article, i) => {
+          <ArticlesStyled>
+          {topNewsData.articles.map((article, i) => {
             articleLayout();
             return (enlargeArticle !== i ? 
                 <ArticleSize
@@ -81,11 +78,11 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
                     <button onClick={() => {setEnlargeArticle(null)}}>X</button>
                 </EnlargedArticle>
             );
-          })
+          })}
+          </ArticlesStyled>
         ) : (
           <div>Loading...</div>
-        )};
-      </ArticlesStyled>
+        )}
     </>
   );
 };

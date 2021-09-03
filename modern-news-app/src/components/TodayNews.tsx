@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SectionContainer } from "../style/Wrappers.style";
 import { ITodayNewsResponse } from "../models/TodayArticles";
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
@@ -21,15 +22,6 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
     if (articleIndex === 0) {
         articleIndex++;
         ArticleSize = OneArticle;
-    } else if (articleIndex === 4) {
-      articleIndex++;
-      ArticleSize = OneArticle;
-    } else if (articleIndex === 5) {
-      articleIndex = 0;
-      ArticleSize = OneHalfArticle;
-    } else if (articleIndex === 3) {
-      articleIndex++;
-      ArticleSize = OneArticle;
     } else {
       articleIndex++;
       ArticleSize = OneThirdArticle;
@@ -80,11 +72,11 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                     </div>
                     <button onClick={() => {setEnlargeArticle(null)}}>X</button>
                 </EnlargedArticle>
-            );
+            )
           })
         ) : (
           <div>Loading...</div>
-        )};
+        )}
       </ArticlesStyled>
     </>
   );
