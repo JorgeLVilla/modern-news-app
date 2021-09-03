@@ -2,76 +2,89 @@ import React, { useState } from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
 import styled from "styled-components";
 import { SectionContainer } from "../style/Wrappers.style";
-import { OneArticle, OneThirdArticle } from "../style/Articles.style";
+import { EnlargedArticle } from "./Main";
+import {
+  OneArticle,
+  OneHalfArticle,
+  OneThirdArticle,
+} from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import { ArticlesStyled } from "./Main";
 
 
 interface TopNewsProps {
-    topNewsData: IEverythingNewsResponse;
+  topNewsData: IEverythingNewsResponse;
 }
 
 const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
-    
-    const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+  const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+  
+  let ArticleSize = OneThirdArticle;
+  let articleIndex = 0;
 
-        // seperate TodayNews from the rest of articles stored in props
-        const returnFeaturedArticle = () => {
-            const article = topNewsData.articles[0];
-            
-            return (
-                <>
-                {topNewsData.status? 
-                    <OneArticle>
-                            <img src={article.urlToImage} className="articleImg" alt={article.description}/>
-                        <div className="info-container">
-                            <h2 className="title">{article.title}</h2>
+  // Func to set they layout as repeating with a 3-1-2 article pattern
+  const articleLayout = (): void => {
+    if (articleIndex === 0) {
+      articleIndex++;
+      ArticleSize = OneArticle;
+    } else {
+      articleIndex++;
+      ArticleSize = OneThirdArticle;
+    }
+  };
+
+  return (
+    <>
+      <MainPageTitle>Top News</MainPageTitle>
+        {topNewsData.status ? (
+          <ArticlesStyled>
+          {topNewsData.articles.map((article, i) => {
+            articleLayout();
+            return (enlargeArticle !== i ? 
+                <ArticleSize
+                    key={i} 
+                    onClick={() => {setEnlargeArticle(i)}}
+                >
+                    <div className="img-block">
+                        <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                        <span className="click-here">Click to see more</span>
+                    </div>
+                    <div className="info-container">
+                        <div>
+                            <div className="title" >{article.title}</div>
+                            <div className="description">Description:<br/>{article.description}</div>
                         </div>
-                    </OneArticle>
-                    : "Loading..."}
-                </>
-                )
-            }
-    
-        // map through rest of articles with a different grouping
-        const returnStandardArticles = () => {
-            const articles = topNewsData.articles.slice(1);
-    
-            return (
-                <ArticlesStyled>
-                {
-                topNewsData.status?  
-                    articles.map((article, i) => {
-    
-                        return (
-                            <OneThirdArticle key={i}>
-                                <img src={article.urlToImage} alt={article.description} />
-                                <div className="info-container">
-                                    {article.content}
-                                </div>
-                            </OneThirdArticle>
-                        )
-    
-                    }) 
-                    : "Loading..."
-                }
-                </ArticlesStyled>
-            )
-        } 
+                        <div className="bottom-info">
+                            <div>Author: {article.author}</div>
+                            <div>From: {article.source.name}</div>
+                        </div>
+                    </div>
+                </ArticleSize> :
 
-    return (
-        <SectionContainer>
-            <MainPageTitle>
-                Top News
-            </MainPageTitle>
-
-            <ArticlesStyled>
-                {returnFeaturedArticle()}
-                {returnStandardArticles()}
-            </ArticlesStyled>
-            
-        </SectionContainer>
-    )
-}
+                <EnlargedArticle key={i} mainColor={"white"}>
+                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                    <div className="info-container">
+                        <div>
+                            <div className="title" >{article.title}</div>
+                            <div className="description">Description:<br/>{article.description}</div><br/>
+                            <div>More Info:<br/>{article.content}</div>
+                            <a className="url" href={article.url} target="_blank" rel="noreferrer">To read more click here!</a>
+                        </div>
+                        <div className="bottom-info">
+                            <div>Author: {article.author}</div>
+                            <div>From: {article.source.name}</div>
+                        </div>
+                    </div>
+                    <button onClick={() => {setEnlargeArticle(null)}}>X</button>
+                </EnlargedArticle>
+            );
+          })}
+          </ArticlesStyled>
+        ) : (
+          <div>Loading...</div>
+        )}
+    </>
+  );
+};
 
 export default TopNews;

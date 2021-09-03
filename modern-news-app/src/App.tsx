@@ -64,10 +64,17 @@ const App = () => {
       color: "white", 
       minHeight: "100vh",
       width: "100%",
+      boxSizing: "border-box",
       }}>
-      <Navbar getNewsData={getNewsData} />
+      <Navbar 
+        getNewsData={getNewsData}
+        setNewsData={setNewsData}
+      />
       {newsData.status ?
-      <Main newsData={newsData} /> :
+      <Main 
+        newsData={newsData}
+        setNewsData={setNewsData}
+        /> :
       <BodyContainer>
         <TopNews topNewsData={topNewsData} />
         <TodayNews todayNewsData={todayNewsData}/>

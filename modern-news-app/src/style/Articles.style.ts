@@ -11,24 +11,38 @@ export const ArticlesContainer = styled.div`
 
 `;
 
-export const OneThirdArticle = styled.div`
+interface IArticleProps {
+    mainColor?: string;
+}
+
+export const OneThirdArticle = styled.div<IArticleProps>`
     height: auto;
     width: 26em;
     margin: 3em 5em;
 
-    & img {
+    & .img-block{
         height: 20em;
         width: 26em;
-        box-shadow: 4px 4px 7px grey;
         margin-bottom: 1em;
-        border-radius: 10px;
     }
 
-    & .info-container {
-        box-shadow: 4px 4px 7px grey;
+    & img{
+        height: 20em;
+        width: 26em;
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+    }
+
+    & .info-container{
+        box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         & .title {
             display: block;
@@ -37,6 +51,37 @@ export const OneThirdArticle = styled.div`
             text-decoration: none;
             color: white;
             padding-bottom: 0.5em;
+        }
+
+        & .description{
+            display: none;
+        }
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    & .click-here{
+        display: none;
+        font-size: 2em;
+        position: relative;
+        bottom: 6em;
+        left: 3em;
+    }
+    
+    &:hover{
+        cursor: pointer;
+        
+        & img{
+            opacity: 0.25;
+            transition: opacity .25s ease-in-out;
+        }
+
+        & .click-here{
+            display: inline;
         }
     }
 `
@@ -60,6 +105,15 @@ export const OneHalfArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         & .title {
             display: block;
@@ -67,7 +121,27 @@ export const OneHalfArticle = styled.div`
             font-weight: 400;
             text-decoration: none;
             color: white;
-            padding-bottom: 0.5em;
+        }
+    }
+    
+    & .click-here{
+        display: none;
+        font-size: 2em;
+        position: relative;
+        bottom: 8em;
+        left: 8em;
+    }
+    
+    &:hover{
+        cursor: pointer;
+
+        & img{
+            opacity: 0.25;
+            transition: opacity .25s ease-in-out;
+        }
+
+        & .click-here{
+            display: inline;
         }
     }
 `
@@ -79,6 +153,12 @@ export const OneArticle = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
+    
+    & .img-block{
+        width: 50em;
+        height: 28em;
+        margin-right: 2em;
+    }
 
     & img {
         height: 28em;
@@ -94,6 +174,15 @@ export const OneArticle = styled.div`
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .bottom-info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
         & .title {
             display: block;
@@ -101,7 +190,27 @@ export const OneArticle = styled.div`
             font-weight: 400;
             text-decoration: none;
             color: white;
-            padding-bottom: 0.5em;
+        }
+    }
+    
+    & .click-here{
+        display: none;
+        font-size: 2em;
+        position: relative;
+        bottom: 8em;
+        left: 7em;
+    }
+    
+    &:hover{
+        cursor: pointer;
+
+        & img{
+            opacity: 0.25;
+            transition: opacity .25s ease-in-out;
+        }
+
+        & .click-here{
+            display: inline;
         }
     }
 `
