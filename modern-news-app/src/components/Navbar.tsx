@@ -13,23 +13,45 @@ export const NavBarStyle = styled.nav`
     align-items: center;
     padding: 4em 2em;
 
-    & div{
+    & .header{
         padding-left: 1.2em;
         font-size: 4em;
         cursor: pointer;
     }
 `
+
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2em;
+
+    & div{
+        padding-top: 0.5em;
+        font-size: 1.5em;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    &:hover{
+        & div{
+            opacity: 1;
+            transition: opacity .25s ease-in-out;
+        }
+    }
+`
+
 export const NavButtonsStyle = styled.nav`
     display: flex;
     justify-content: flex-end;
     align-items: center;
 `
+
  const NavButton = styled.button`
     height: 60px;
     width: 60px;
     background-color: black;
     color: white;
-    margin-left: 5vw;
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 7px white;
@@ -37,6 +59,7 @@ export const NavButtonsStyle = styled.nav`
     &:active{
         background-color: #191919;
         box-shadow: 0 0 10px white;
+
         & img{
             opacity: 0.5;
         }
@@ -59,23 +82,38 @@ const Navbar: React.FC<NavProps> = ({ getNewsData, setNewsData }) => {
 
     return (
         <NavBarStyle>
-            <div onClick={() => setNewsData(new EverythingNewsResponse())}>ModernNews<img src={icon} alt="A magazine icon"/></div>
+            <div className="header" onClick={() => setNewsData(new EverythingNewsResponse())}>ModernNews<img src={icon} alt="A magazine icon"/></div>
             <NavButtonsStyle>
-                <NavButton>
-                    <img onClick={() => getNewsData("sports")} src={sports} alt="button link for sports search" />
-                </NavButton>
-                <NavButton>
-                    <img onClick={() => getNewsData("entertainment")} src={entertainment} alt="button link for entertainment search" />
-                </NavButton>
-                <NavButton>
-                    <img onClick={() => getNewsData("business")} src={business} alt="button link for business search" />
-                </NavButton>
-                <NavButton>
-                    <img onClick={() => getNewsData("health")} src={health} alt="button link for health search" />
-                </NavButton>
-                <NavButton>
-                    <img onClick={() => getNewsData("world")} src={world} alt="button link for world search" />
-                </NavButton>
+                <ButtonContainer>
+                    <NavButton>
+                        <img onClick={() => getNewsData("sports")} src={sports} alt="button link for sports search" />
+                    </NavButton>
+                    <div style={{ color : "#FFA55C"}}>Sports</div>
+                </ButtonContainer>
+                <ButtonContainer>
+                    <NavButton>
+                        <img onClick={() => getNewsData("entertainment")} src={entertainment} alt="button link for entertainment search" />
+                    </NavButton>
+                    <div style={{ color : "#1FC8A3"}}>Entertainment</div>
+                </ButtonContainer>
+                <ButtonContainer>
+                    <NavButton>
+                        <img onClick={() => getNewsData("business")} src={business} alt="button link for business search" />
+                    </NavButton>
+                    <div style={{ color : "#6F81D8"}}>Business</div>
+                </ButtonContainer>
+                <ButtonContainer>
+                    <NavButton>
+                        <img onClick={() => getNewsData("health")} src={health} alt="button link for health search" />
+                    </NavButton>
+                    <div style={{ color : "#00C0C8"}}>Health</div>
+                </ButtonContainer>
+                <ButtonContainer>
+                    <NavButton>
+                        <img onClick={() => getNewsData("world")} src={world} alt="button link for world search" />
+                    </NavButton>
+                    <div style={{ color : "#FF9A86"}}>World</div>
+                </ButtonContainer>
             </NavButtonsStyle>
         </NavBarStyle>
     )

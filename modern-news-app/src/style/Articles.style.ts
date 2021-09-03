@@ -20,6 +20,8 @@ export const OneThirdArticle = styled.div<IArticleProps>`
         width: 26em;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         border-radius: 10px;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
     }
 
     & .info-container{
@@ -64,6 +66,7 @@ export const OneThirdArticle = styled.div<IArticleProps>`
         
         & img{
             opacity: 0.25;
+            transition: opacity .25s ease-in-out;
         }
 
         & .click-here{
@@ -91,6 +94,8 @@ export const OneArticle = styled.div<IArticleProps>`
         border-radius: 10px;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-right: 2em;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
     }
 
     & .info-container{
@@ -131,6 +136,7 @@ export const OneArticle = styled.div<IArticleProps>`
 
         & img{
             opacity: 0.25;
+            transition: opacity .25s ease-in-out;
         }
 
         & .click-here{
@@ -156,6 +162,8 @@ export const OneHalfArticle = styled.div<IArticleProps>`
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-bottom: 1em;
         border-radius: 10px;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
     }
 
     & .info-container{
@@ -196,6 +204,7 @@ export const OneHalfArticle = styled.div<IArticleProps>`
 
         & img{
             opacity: 0.25;
+            transition: opacity .25s ease-in-out;
         }
 
         & .click-here{
