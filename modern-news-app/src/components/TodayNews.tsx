@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { SectionContainer } from "../style/Wrappers.style";
 import { ITodayNewsResponse } from "../models/TodayArticles";
-import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
-import { ArticlesStyled, EnlargedArticle } from "./Main";
+import Article from "./Article";
+import ExpandedArticle from "./ExpandedArticle";
+import { ArticlesStyled } from "./Main";
 
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
@@ -13,18 +13,19 @@ interface MainProps {
 // enable react props
 const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
   const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
-  let ArticleSize = OneThirdArticle;
 
+  let ArticleSize = 3;
   let articleIndex = 0;
+  let mainColorCheck = "white";
 
   // Func to set they layout as repeating with a 3-1-2 article pattern
   const articleLayout = (): void => {
     if (articleIndex === 0) {
         articleIndex++;
-        ArticleSize = OneArticle;
+        ArticleSize = 1;
     } else {
       articleIndex++;
-      ArticleSize = OneThirdArticle;
+      ArticleSize = 3;
     }
   };
 
@@ -35,44 +36,20 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
         {todayNewsData.status ? (
           todayNewsData.articles.map((article, i) => {
             articleLayout();
-            return (enlargeArticle !== i ? 
-                <ArticleSize
-                    key={i} 
-                    onClick={() => {setEnlargeArticle(i)}}
-                >
-                    <div className="img-block">
-                        <img src={article.urlToImage} alt="What the article is trying to explain"/>
-                        <span className="click-here">Click to see more</span>
-                    </div>
-                    <div className="info-container">
-                        <div>
-                            <div className="title" >{article.title}</div>
-                            <div className="description">Description:<br/>{article.description}</div>
-                        </div>
-                        <div className="bottom-info">
-                            <div>Author: {article.author}</div>
-                            <div>From: {article.source.name}</div>
-                        </div>
-                    </div>
-                </ArticleSize> :
-
-                <EnlargedArticle key={i} mainColor={"white"}>
-                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
-                    <div className="info-container">
-                        <div>
-                            <div className="title" >{article.title}</div>
-                            <div className="description">Description:<br/>{article.description}</div><br/>
-                            <div>More Info:<br/>{article.content}</div>
-                            <a className="url" href={article.url} target="_blank" rel="noreferrer">To read more click here!</a>
-                        </div>
-                        <div className="bottom-info">
-                            <div>Author: {article.author}</div>
-                            <div>From: {article.source.name}</div>
-                        </div>
-                    </div>
-                    <button onClick={() => {setEnlargeArticle(null)}}>X</button>
-                </EnlargedArticle>
-            )
+            return (enlargeArticle !== 1 ? 
+              <Article 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle} 
+                  article={article} 
+                  ArticleSize={ArticleSize}
+              /> :
+              <ExpandedArticle 
+                  article={article} 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle}
+              />)
           })
         ) : (
           <div>Loading...</div>
