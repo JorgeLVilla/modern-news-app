@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
-import styled from "styled-components";
 import { ArticlesStyled } from "./Main";
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
@@ -9,14 +8,8 @@ interface TopNewsProps {
     topNewsData: IEverythingNewsResponse;
 }
 
-const NewsSectionTitle = styled.div `
-    font-size: 5em;
-    padding-left: 1.5em;
-`
-
 const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
     
-    const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
 
     let ArticleSize = OneThirdArticle
     let articleIndex = 0
@@ -50,11 +43,19 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
                         return (
 
                             <ArticleSize key={i}>
-                                <img src={article.urlToImage} alt={"hi"} />
+                               <div className="img-block">
+                                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                    <span className="click-here">Click to see more</span>
+                                </div>
                                 <div className="info-container">
-                                    <div>{article.title}</div>
-                                    <div>{article.author}</div>
-                                    <div>{article.content}</div>
+                                    <div>
+                                        <div className="title" >{article.title}</div>
+                                        <div className="description">Description:<br/>{article.description}</div>
+                                    </div>
+                                    <div className="bottom-info">
+                                        <div>Author: {article.author}</div>
+                                        <div>From: {article.source.name}</div>
+                                    </div>
                                 </div>
                             </ArticleSize>
                         )

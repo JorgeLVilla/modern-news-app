@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from "styled-components";
 import { ITodayNewsResponse } from '../models/TodayArticles';
-import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
+import { OneArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
 
 // set type for todayNewsData that will be accessed as props
@@ -13,7 +12,7 @@ interface MainProps {
 const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
 
     let ArticleSize = OneThirdArticle
-    let articleIndex = 0
+    // let articleIndex = 0
         
     // seperate TodayNews from the rest of articles stored in props
     const returnFeaturedArticle = () => {
@@ -21,13 +20,25 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
         
         return (
             <>
-            {todayNewsData.status? 
-                <OneArticle>
-                        <img src={article.urlToImage} className="articleImg" alt={article.description}/>
-                    <div className="info-container">
-                        <h2 className="title">{article.title}</h2>
-                    </div>
-                </OneArticle>
+            {todayNewsData.status?
+            <OneArticle>
+            <ArticleSize>
+            <div className="img-block">
+                <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                <span className="click-here">Click to see more</span>
+            </div>
+            <div className="info-container">
+                <div>
+                    <div className="title" >{article.title}</div>
+                    <div className="description">Description:<br/>{article.description}</div>
+                </div>
+                <div className="bottom-info">
+                    <div>Author: {article.author}</div>
+                    <div>From: {article.source.name}</div>
+                </div>
+            </div>
+        </ArticleSize>
+        </OneArticle>
                 : "Loading..."}
             </>
             )
@@ -44,12 +55,24 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                 articles.map((article, i) => {
 
                     return (
-                        <OneThirdArticle key={i}>
-                            <img src={article.urlToImage} alt={article.description} />
-                            <div className="info-container">
-                                {article.content}
-                            </div>
-                        </OneThirdArticle>
+                        <OneThirdArticle>
+                        <ArticleSize>
+                                <div className="img-block">
+                                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                    <span className="click-here">Click to see more</span>
+                                </div>
+                                <div className="info-container">
+                                    <div>
+                                        <div className="title" >{article.title}</div>
+                                        <div className="description">Description:<br/>{article.description}</div>
+                                    </div>
+                                    <div className="bottom-info">
+                                        <div>Author: {article.author}</div>
+                                        <div>From: {article.source.name}</div>
+                                    </div>
+                                </div>
+                            </ArticleSize>
+                            </OneThirdArticle>
                     )
 
                 }) 
