@@ -1,27 +1,52 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { IEverythingNewsResponse } from "../models/Articles";
+import { EverythingNewsResponse, IEverythingNewsResponse } from "../models/Articles";
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import sports from '../assets/sports.png';
 import entertainment from '../assets/entertainment.png';
 import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
+import back from '../assets/back.png';
 
-interface IEnlargeArticleProps {
-    mainColor: string;
-}
-
-export const ArticlesStyled = styled.div`
+const TitleSection = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    margin-left: 6.5em;
+    align-items: center;
+
+    & .back-section{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 0.8em;
+
+        & .back-button{
+            position: relative;
+            top: 0.5em;
+            height: 4.5em;
+        }
+
+        & .back-message{
+            font-size: 0.8em;
+            text-align: center;
+            opacity: 0.0;
+            transition: opacity 1s ease-in-out;
+            padding-top: 1em;
+        }
+
+        &:hover{
+            & .back-message{
+                opacity: 1.0;
+                transition: opacity .55s ease-in-out;
+            }
+        }
+    }
+
 `
 
 const TitleStyled = styled.div`
     font-size: 5em;
-    padding-left: 1.5em;
     
     & img{
         height: 1em;
@@ -96,11 +121,23 @@ const EnlargedArticle = styled.div<IEnlargeArticleProps>`
     }
 `
 
+export const ArticlesStyled = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+`
+
 interface MainProps {
     newsData: IEverythingNewsResponse
+    setNewsData: Function;
 }
 
-const Main: React.FC<MainProps> = ({ newsData }) => {
+interface IEnlargeArticleProps {
+    mainColor: string;
+}
+
+const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
 
     const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
 
@@ -152,7 +189,18 @@ const Main: React.FC<MainProps> = ({ newsData }) => {
         <>
             {newsData.status ? (
                 <div>
-                    <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
+                    <TitleSection>
+                        <div className="back-section">
+                            <img 
+                                className="back-button"
+                                src={back} 
+                                alt="back arrow button to click and go bac to the home page" 
+                                onClick={() => setNewsData(new EverythingNewsResponse())} 
+                            />
+                            <div className="back-message">Go Back</div>
+                        </div>
+                        <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
+                    </TitleSection>
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();

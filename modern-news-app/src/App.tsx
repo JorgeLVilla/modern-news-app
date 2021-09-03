@@ -61,7 +61,7 @@ const App = () => {
     <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
       <Navbar getNewsData={getNewsData} setNewsData={setNewsData} />
       {newsData.status ?
-      <Main newsData={newsData} /> :
+      <Main newsData={newsData} setNewsData={setNewsData} /> :
       <>
         <TopNews topNewsData={topNewsData} />
         <TodayNews todayNewsData={todayNewsData}/>
