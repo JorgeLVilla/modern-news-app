@@ -7,13 +7,14 @@ import icon from '../assets/magazine.png';
 import styled from 'styled-components';
 
 const NavBarStyle = styled.nav`
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4em 2em;
+    padding: 4em 6em;
+    width: 100%;
 
     & div{
-        padding-left: 1.2em;
         font-size: 4em;
     }
 `

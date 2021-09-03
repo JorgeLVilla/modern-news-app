@@ -3,6 +3,7 @@ import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse 
 import { ITopNewsResponse } from './models/Articles';
 import { fetchNewsData } from './util/fetchApi';
 import { fetchTodayNewsData } from './util/fetchApi';
+import { BodyContainer } from "./style/Wrappers.style";
 import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/TodayArticles';
 
 // components 
@@ -58,14 +59,19 @@ const App = () => {
 }
 
   return (
-    <div className="App" style={{ backgroundColor: "#22242C", color: "white", minHeight: "100vh"}}>
+    <div style={{ 
+      backgroundColor: "#22242C", 
+      color: "white", 
+      minHeight: "100vh",
+      width: "100%",
+      }}>
       <Navbar getNewsData={getNewsData} />
       {newsData.status ?
       <Main newsData={newsData} /> :
-      <>
+      <BodyContainer>
         <TopNews topNewsData={topNewsData} />
         <TodayNews todayNewsData={todayNewsData}/>
-      </>
+      </BodyContainer>
       }
     </div>
   );

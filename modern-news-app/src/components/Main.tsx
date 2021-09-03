@@ -8,13 +8,6 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 
-export const ArticlesStyled = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-`
-
 const TitleStyled = styled.div`
     font-size: 5em;
     padding-left: 1.5em;
@@ -25,7 +18,12 @@ const TitleStyled = styled.div`
         padding-left: 0.3em;
     }
 `
-
+export const ArticlesStyled = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+`
 const EnlargedArticle = styled.div`
     height: auto;
     width: 103.5em;

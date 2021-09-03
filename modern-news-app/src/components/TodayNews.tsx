@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 import { ITodayNewsResponse } from '../models/TodayArticles';
-import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
+import { OneArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
+import { SectionContainer } from "../style/Wrappers.style";
+import { ArticlesStyled } from "./Main";
 
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
@@ -38,7 +40,7 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
         const articles = todayNewsData.articles.slice(1);
 
         return (
-            <>
+            <ArticlesStyled>
             {
             todayNewsData.status?  
                 articles.map((article, i) => {
@@ -55,20 +57,21 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                 }) 
                 : "Loading..."
             }
-            </>
+            </ArticlesStyled>
         )
     }    
 
     return (
-        <>
-            <div>
-                <MainPageTitle>Today</MainPageTitle>
-            </div>
-            
-            {returnFeaturedArticle()}
-            {returnStandardArticles()}
+        <SectionContainer>
+            <MainPageTitle>Today</MainPageTitle>
 
-        </>
+            <ArticlesStyled>
+                {returnFeaturedArticle()}
+                {returnStandardArticles()} 
+            </ArticlesStyled>
+            
+
+        </SectionContainer>
         
     )
 }

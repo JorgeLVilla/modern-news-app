@@ -1,66 +1,76 @@
 import React, { useState } from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
 import styled from "styled-components";
-import { ArticlesStyled } from "./Main";
-import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
+import { SectionContainer } from "../style/Wrappers.style";
+import { OneArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
+import { ArticlesStyled } from "./Main";
+
 
 interface TopNewsProps {
     topNewsData: IEverythingNewsResponse;
 }
 
-const NewsSectionTitle = styled.div `
-    font-size: 5em;
-    padding-left: 1.5em;
-`
-
 const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
     
     const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
 
-    let ArticleSize = OneThirdArticle
-    let articleIndex = 0
-
-    // Func to set they layout as repeating with a 3-1-2 article pattern
-    const articleLayout = ():void => {
-        if(articleIndex === 4){
-            articleIndex++
-            ArticleSize = OneArticle
-        } else if(articleIndex === 5){
-            articleIndex = 0
-            ArticleSize = OneHalfArticle
-        }else if(articleIndex === 3){
-            articleIndex++
-            ArticleSize = OneArticle
-        } else{
-            articleIndex++
-            ArticleSize = OneThirdArticle
-        }
-    }
+        // seperate TodayNews from the rest of articles stored in props
+        const returnFeaturedArticle = () => {
+            const article = topNewsData.articles[0];
+            
+            return (
+                <>
+                {topNewsData.status? 
+                    <OneArticle>
+                            <img src={article.urlToImage} className="articleImg" alt={article.description}/>
+                        <div className="info-container">
+                            <h2 className="title">{article.title}</h2>
+                        </div>
+                    </OneArticle>
+                    : "Loading..."}
+                </>
+                )
+            }
+    
+        // map through rest of articles with a different grouping
+        const returnStandardArticles = () => {
+            const articles = topNewsData.articles.slice(1);
+    
+            return (
+                <ArticlesStyled>
+                {
+                topNewsData.status?  
+                    articles.map((article, i) => {
+    
+                        return (
+                            <OneThirdArticle key={i}>
+                                <img src={article.urlToImage} alt={article.description} />
+                                <div className="info-container">
+                                    {article.content}
+                                </div>
+                            </OneThirdArticle>
+                        )
+    
+                    }) 
+                    : "Loading..."
+                }
+                </ArticlesStyled>
+            )
+        } 
 
     return (
-        <div>
+        <SectionContainer>
             <MainPageTitle>
                 Top News
             </MainPageTitle>
-            <ArticlesStyled>
-                {topNewsData.status ?
-                    topNewsData.articles.map((article, i) => {
-                        articleLayout();
-                        return (
 
-                            <ArticleSize key={i}>
-                                <img src={article.urlToImage} alt={"hi"} />
-                                <div className="info-container">
-                                    <div>{article.title}</div>
-                                    <div>{article.author}</div>
-                                    <div>{article.content}</div>
-                                </div>
-                            </ArticleSize>
-                        )
-                    }) : <div>Loading...</div>};
+            <ArticlesStyled>
+                {returnFeaturedArticle()}
+                {returnStandardArticles()}
             </ArticlesStyled>
-        </div>
+            
+        </SectionContainer>
     )
 }
 
