@@ -18,7 +18,7 @@ type SortBy = "relevancy" | "popularity" | "publishedAt";
 export class EverythingNewsRequest implements IEverythingNewsRequest {
     apiKey= process.env.REACT_APP_NEWS_API_KEY || "";
     q= "";
-    pageSize= 20;
+    pageSize= 4;
     sortBy= "popularity" as SortBy;
     qInTitle= "";
     sources= [];

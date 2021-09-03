@@ -14,7 +14,7 @@ export class TodayNewsRequest implements ITodayNewsRequest {
     category = "general" as Category; 
     sources = "us";
     q = "";
-    pageSize = 10;
+    pageSize = 4;
     page = 1;
 
     constructor(configOverride?: Partial<ITodayNewsRequest>) {

@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+
+export const ArticlesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 2px solid red;
+    margin: 50px auto;
+
+`;
+
 interface IArticleProps {
     mainColor?: string;
 }
@@ -33,7 +44,7 @@ export const OneThirdArticle = styled.div<IArticleProps>`
         flex-direction: column;
         justify-content: space-between;
 
-        & .title{
+        & .title {
             display: block;
             font-size: 1.8em;
             font-weight: 400;
@@ -75,32 +86,22 @@ export const OneThirdArticle = styled.div<IArticleProps>`
     }
 `
 
-export const OneArticle = styled.div<IArticleProps>`
-    height: 28em;
-    width: 103.5em;
-    margin: 3em 5em;
-    display: flex;
-    flex-direction: row;
+export const OneHalfArticle = styled.div`
+    height: auto;
+    width: 46.5em;
+    margin: 3em 4em;
 
-    & .img-block{
-        width: 50em;
-        height: 28em;
-        margin-right: 2em;
-    }
-
-    & img{
-        height: 28em;
-        width: 50em;
+    & img {
+        height: 25em;
+        width: 46.5em;
+        box-shadow: 4px 4px 7px grey;
+        margin-bottom: 1em;
         border-radius: 10px;
-        box-shadow: 4px 4px 7px ${props => props.mainColor};
-        margin-right: 2em;
-        opacity: 1;
-        transition: opacity 1s ease-in-out;
     }
 
-    & .info-container{
-        width: 51em;
-        box-shadow: 4px 4px 7px ${props => props.mainColor};
+    & .info-container {
+        height: 10em;
+        box-shadow: 4px 4px 7px grey;
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
@@ -114,7 +115,7 @@ export const OneArticle = styled.div<IArticleProps>`
             justify-content: space-between;
         }
 
-        & .title{
+        & .title {
             display: block;
             font-size: 1.8em;
             font-weight: 400;
@@ -145,30 +146,31 @@ export const OneArticle = styled.div<IArticleProps>`
     }
 `
 
-export const OneHalfArticle = styled.div<IArticleProps>`
-    height: auto;
-    width: 46.5em;
-    margin: 3em 4em;
-
+export const OneArticle = styled.div`
+    height: 28em;
+    width: 100%;
+    margin: 3em 5em;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    
     & .img-block{
-        height: 25em;
-        width: 46.5em;
-        margin-bottom: 1em;
+        width: 50em;
+        height: 28em;
+        margin-right: 2em;
     }
 
-    & img{
-        height: 25em;
-        width: 46.5em;
-        box-shadow: 4px 4px 7px ${props => props.mainColor};
-        margin-bottom: 1em;
+    & img {
+        height: 28em;
+        width: 50em;
         border-radius: 10px;
-        opacity: 1;
-        transition: opacity 1s ease-in-out;
+        box-shadow: 4px 4px 7px grey;
+        margin-right: 2em;
     }
 
-    & .info-container{
-        height: 14em;
-        box-shadow: 4px 4px 7px ${props => props.mainColor};
+    & .info-container {
+        width: 51em;
+        box-shadow: 4px 4px 7px grey;
         background-color: black;
         border-radius: 10px;
         padding: 0.5em;
@@ -182,7 +184,7 @@ export const OneHalfArticle = styled.div<IArticleProps>`
             justify-content: space-between;
         }
 
-        & .title{
+        & .title {
             display: block;
             font-size: 1.8em;
             font-weight: 400;
