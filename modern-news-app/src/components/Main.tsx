@@ -7,7 +7,6 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 import back from '../assets/back.png';
-import noimageavailable from "../assets/noimageavailable.jpg"
 import ExpandedArticle from "./ExpandedArticle";
 import Article from "./Article";
 

@@ -31,12 +31,12 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
 
   return (
     <>
-      <MainPageTitle>Today News</MainPageTitle>
-      <ArticlesStyled>
+      <MainPageTitle>Top News</MainPageTitle>
         {todayNewsData.status ? (
-          todayNewsData.articles.map((article, i) => {
+          <ArticlesStyled>
+          {todayNewsData.articles.map((article, i) => {
             articleLayout();
-            return (enlargeArticle !== 1 ? 
+            return (enlargeArticle !== i ? 
               <Article 
                   index={i} 
                   mainColorCheck={mainColorCheck} 
@@ -50,11 +50,11 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                   mainColorCheck={mainColorCheck} 
                   setEnlargeArticle={setEnlargeArticle}
               />)
-          })
+          })}
+          </ArticlesStyled>
         ) : (
           <div>Loading...</div>
         )}
-      </ArticlesStyled>
     </>
   );
 };
