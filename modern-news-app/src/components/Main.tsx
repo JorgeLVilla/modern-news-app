@@ -26,6 +26,7 @@ const TitleSection = styled.div`
             position: relative;
             top: 0.5em;
             height: 4.5em;
+            cursor: pointer;
         }
 
         & .back-message{
