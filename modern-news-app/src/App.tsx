@@ -27,7 +27,7 @@ const App = () => {
 
   const getNewsData = async (search: string) => {
     try {
-      const request = new EverythingNewsRequest({q: search});
+      const request = new EverythingNewsRequest({q: search, pageSize: 20});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
     } catch (error) {
