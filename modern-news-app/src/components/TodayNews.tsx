@@ -4,6 +4,7 @@ import { ITodayNewsResponse } from "../models/TodayArticles";
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import { ArticlesStyled, EnlargedArticle } from "./Main";
+import noimageavailable from "../assets/noimageavailable.jpg";
 
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
@@ -41,7 +42,7 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                     onClick={() => {setEnlargeArticle(i)}}
                 >
                     <div className="img-block">
-                        <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                         <span className="click-here">Click to see more</span>
                     </div>
                     <div className="info-container">
@@ -57,7 +58,7 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                 </ArticleSize> :
 
                 <EnlargedArticle key={i} mainColor={"white"}>
-                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                     <div className="info-container">
                         <div>
                             <div className="title" >{article.title}</div>

@@ -10,6 +10,7 @@ import {
 } from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import { ArticlesStyled } from "./Main";
+import noimageavailable from "../assets/noimageavailable.jpg";
 
 
 interface TopNewsProps {
@@ -46,7 +47,7 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
                     onClick={() => {setEnlargeArticle(i)}}
                 >
                     <div className="img-block">
-                        <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                        <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                         <span className="click-here">Click to see more</span>
                     </div>
                     <div className="info-container">
@@ -62,7 +63,7 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
                 </ArticleSize> :
 
                 <EnlargedArticle key={i} mainColor={"white"}>
-                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                     <div className="info-container">
                         <div>
                             <div className="title" >{article.title}</div>

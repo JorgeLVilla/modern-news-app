@@ -8,6 +8,7 @@ import business from '../assets/business.png';
 import health from '../assets/health.png';
 import world from '../assets/world.png';
 import back from '../assets/back.png';
+import noimageavailable from "../assets/noimageavailable.jpg"
 
 const TitleSection = styled.div`
     display: flex;
@@ -164,11 +165,11 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
     // Setting the Title of the Main page based off of what button was pressed
     const searchTitleCheck = () => {
         switch(newsData.search){
-            case "sports": return <div>Sports<img src={sports} alt="football"/></div>;
-            case "entertainment": return <>Entertainment<img src={entertainment} alt="camera"/></>;
-            case "business": return <>Business<img src={business} alt="stock chart"/></>;
-            case "health": return <>Health<img src={health} alt="heart"/></>;
-            case "world": return <>World<img src={world} alt="world"/></>;
+            case "sports": return <div>Sports<img src={sports} alt=""/></div>;
+            case "entertainment": return <>Entertainment<img src={entertainment} alt=""/></>;
+            case "business": return <>Business<img src={business} alt=""/></>;
+            case "health": return <>Health<img src={health} alt=""/></>;
+            case "world": return <>World<img src={world} alt=""/></>;
             default : return <>You searched for {newsData.search}</>;
         }
     }
@@ -194,7 +195,7 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                             <img 
                                 className="back-button"
                                 src={back} 
-                                alt="back arrow button to click and go bac to the home page" 
+                                alt="" 
                                 onClick={() => setNewsData(new EverythingNewsResponse())} 
                             />
                             <div className="back-message">Go Back</div>
@@ -212,7 +213,7 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                                 onClick={() => {setEnlargeArticle(index)}}
                             >
                                 <div className="img-block">
-                                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                                     <span className="click-here">Click to see more</span>
                                 </div>
                                 <div className="info-container">
@@ -228,7 +229,7 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                             </ArticleSize> :
 
                             <EnlargedArticle key={index} mainColor={mainColorCheck()}>
-                                <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                                <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                                 <div className="info-container">
                                     <div>
                                         <div className="title" >{article.title}</div>
