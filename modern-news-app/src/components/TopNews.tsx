@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
-import styled from "styled-components";
-import { SectionContainer } from "../style/Wrappers.style";
-import { EnlargedArticle } from "./Main";
-import {
-  OneArticle,
-  OneHalfArticle,
-  OneThirdArticle,
-} from "../style/Articles.style";
 import { MainPageTitle } from "../style/SectionTitles.style";
+import Article from "./Article";
+import ExpandedArticle from "./ExpandedArticle";
 import { ArticlesStyled } from "./Main";
 import noimageavailable from "../assets/noimageavailable.jpg";
 
@@ -20,17 +14,18 @@ interface TopNewsProps {
 const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
   const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
   
-  let ArticleSize = OneThirdArticle;
+  let ArticleSize = 3;
   let articleIndex = 0;
+  let mainColorCheck = "white";
 
   // Func to set they layout as repeating with a 3-1-2 article pattern
   const articleLayout = (): void => {
     if (articleIndex === 0) {
       articleIndex++;
-      ArticleSize = OneArticle;
+      ArticleSize = 1;
     } else {
       articleIndex++;
-      ArticleSize = OneThirdArticle;
+      ArticleSize = 3;
     }
   };
 
@@ -42,43 +37,19 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
           {topNewsData.articles.map((article, i) => {
             articleLayout();
             return (enlargeArticle !== i ? 
-                <ArticleSize
-                    key={i} 
-                    onClick={() => {setEnlargeArticle(i)}}
-                >
-                    <div className="img-block">
-                        <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
-                        <span className="click-here">Click to see more</span>
-                    </div>
-                    <div className="info-container">
-                        <div>
-                            <div className="title" >{article.title}</div>
-                            <div className="description">Description:<br/>{article.description}</div>
-                        </div>
-                        <div className="bottom-info">
-                            <div>Author: {article.author}</div>
-                            <div>From: {article.source.name}</div>
-                        </div>
-                    </div>
-                </ArticleSize> :
-
-                <EnlargedArticle key={i} mainColor={"white"}>
-                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
-                    <div className="info-container">
-                        <div>
-                            <div className="title" >{article.title}</div>
-                            <div className="description">Description:<br/>{article.description}</div><br/>
-                            <div>More Info:<br/>{article.content}</div>
-                            <a className="url" href={article.url} target="_blank" rel="noreferrer">To read more click here!</a>
-                        </div>
-                        <div className="bottom-info">
-                            <div>Author: {article.author}</div>
-                            <div>From: {article.source.name}</div>
-                        </div>
-                    </div>
-                    <button onClick={() => {setEnlargeArticle(null)}}>X</button>
-                </EnlargedArticle>
-            );
+              <Article 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle} 
+                  article={article} 
+                  ArticleSize={ArticleSize}
+              /> :
+              <ExpandedArticle 
+                  article={article} 
+                  index={i} 
+                  mainColorCheck={mainColorCheck} 
+                  setEnlargeArticle={setEnlargeArticle}
+              />)
           })}
           </ArticlesStyled>
         ) : (
