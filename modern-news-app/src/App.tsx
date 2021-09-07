@@ -17,6 +17,7 @@ const App = () => {
   const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
   const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new EverythingNewsResponse())
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
+  const [enlargeArticle, setEnlargeArticle] = useState<string | null>(null)
 
   // news data call for top section of home page
 
@@ -67,17 +68,28 @@ const App = () => {
       boxSizing: "border-box",
       }}>
       <Navbar 
+        setEnlargeArticle={setEnlargeArticle}
         getNewsData={getNewsData}
         setNewsData={setNewsData}
       />
       {newsData.status ?
       <Main 
+        enlargeArticle={enlargeArticle}
+        setEnlargeArticle={setEnlargeArticle}
         newsData={newsData}
         setNewsData={setNewsData}
         /> :
       <BodyContainer>
-        <TopNews topNewsData={topNewsData} />
-        <TodayNews todayNewsData={todayNewsData}/>
+        <TopNews 
+          topNewsData={topNewsData} 
+          enlargeArticle={enlargeArticle}
+          setEnlargeArticle={setEnlargeArticle}
+        />
+        <TodayNews 
+          todayNewsData={todayNewsData} 
+          enlargeArticle={enlargeArticle}
+          setEnlargeArticle={setEnlargeArticle}
+        />
       </BodyContainer>
       }
     </div>

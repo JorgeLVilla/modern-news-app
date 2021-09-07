@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ITodayNewsResponse } from "../models/TodayArticles";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import Article from "./Article";
@@ -8,11 +8,12 @@ import { ArticlesStyled } from "./Main";
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
   todayNewsData: ITodayNewsResponse;
+  enlargeArticle: string | null;
+  setEnlargeArticle: Function;
 }
 
 // enable react props
-const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
-  const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+const TodayNews: React.FC<MainProps> = ({ todayNewsData, enlargeArticle, setEnlargeArticle }) => {
 
   let ArticleSize = 3;
   let articleIndex = 0;
@@ -36,8 +37,9 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
           <ArticlesStyled>
           {todayNewsData.articles.map((article, i) => {
             articleLayout();
-            return (enlargeArticle !== i ? 
+            return (enlargeArticle !== `today-${i}` ? 
               <Article 
+                  section="today"
                   index={i} 
                   mainColorCheck={mainColorCheck} 
                   setEnlargeArticle={setEnlargeArticle} 
