@@ -4,7 +4,6 @@ import { MainPageTitle } from "../style/SectionTitles.style";
 import Article from "./Article";
 import ExpandedArticle from "./ExpandedArticle";
 import { ArticlesStyled } from "./Main";
-import noimageavailable from "../assets/noimageavailable.jpg";
 
 
 interface TopNewsProps {
