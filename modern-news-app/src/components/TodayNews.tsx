@@ -32,7 +32,7 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData, enlargeArticle, setEnla
 
   return (
     <>
-      <MainPageTitle>Top News</MainPageTitle>
+      <MainPageTitle>Today's Top News</MainPageTitle>
         {todayNewsData.status ? (
           <ArticlesStyled>
           {todayNewsData.articles.map((article, i) => {
