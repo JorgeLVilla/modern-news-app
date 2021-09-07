@@ -29,6 +29,7 @@ const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArt
             <ArticleSizeFinal
                 key={index} 
                 mainColor={mainColorCheck}
+                href={`#article-${index}`}
                 onClick={() => {setEnlargeArticle(index)}}
             >
                 <div className="img-block">

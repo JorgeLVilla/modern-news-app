@@ -10,7 +10,7 @@ interface IExpandedArticleProps {
 
 const ExpandedArticle: React.FC<IExpandedArticleProps> = ({ article, index, mainColorCheck, setEnlargeArticle }) => {
     return(
-        <EnlargedArticle key={index} mainColor={mainColorCheck}>
+        <EnlargedArticle key={index} mainColor={mainColorCheck} id={`article-${index}`}>
             <img src={article.urlToImage} alt="What the article is trying to explain"/>
             <div className="info-container">
                 <div>

@@ -1,0 +1,105 @@
+[debug] [2021-09-03T23:38:23.897Z] ----------------------------------------------------------------------
+[debug] [2021-09-03T23:38:23.899Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Luis P\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-09-03T23:38:23.900Z] CLI Version:   9.16.4
+[debug] [2021-09-03T23:38:23.900Z] Platform:      win32
+[debug] [2021-09-03T23:38:23.900Z] Node Version:  v14.17.5
+[debug] [2021-09-03T23:38:23.904Z] Time:          Fri Sep 03 2021 16:38:23 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-09-03T23:38:23.904Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-09-03T23:38:23.908Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-09-03T23:38:23.937Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-03T23:38:23.937Z] > authorizing via signed-in user (lap343@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Luis P\Documents\Typescript\modern-news-app
+
+[debug] [2021-09-03T23:38:24.242Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-09-03T23:38:24.242Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2021-09-03T23:39:13.509Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-09-03T23:39:13.509Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-03T23:39:13.687Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Fri, 03 Sep 2021 23:39:13 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:13.698Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects  
+ {"projectId":"modern-news-app","name":"modern-news-app"}
+[debug] [2021-09-03T23:39:14.371Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 03 Sep 2021 23:39:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=533","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:14.373Z] > refreshing access token with scopes: []
+[debug] [2021-09-03T23:39:14.373Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-03T23:39:14.514Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Fri, 03 Sep 2021 23:39:14 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:14.523Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 [none]
+[debug] [2021-09-03T23:39:14.920Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 200
+[debug] [2021-09-03T23:39:14.920Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 {"name":"operations/cp.5729692884460614575"}
+[debug] [2021-09-03T23:39:15.435Z] [Project Creation Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:15.436Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 [none]
+[debug] [2021-09-03T23:39:15.849Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 200
+[debug] [2021-09-03T23:39:15.850Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 {"name":"operations/cp.5729692884460614575"}
+[debug] [2021-09-03T23:39:16.857Z] [Project Creation Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:16.858Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 [none]
+[debug] [2021-09-03T23:39:17.279Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 200
+[debug] [2021-09-03T23:39:17.279Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 {"name":"operations/cp.5729692884460614575","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true}}
+[debug] [2021-09-03T23:39:19.285Z] [Project Creation Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:19.286Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 [none]
+[debug] [2021-09-03T23:39:19.728Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 200
+[debug] [2021-09-03T23:39:19.729Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.5729692884460614575 {"name":"operations/cp.5729692884460614575","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"493878806778","projectId":"modern-news-app","lifecycleState":"ACTIVE","name":"modern-news-app","createTime":"2021-09-03T23:39:14.185Z"}}
+[debug] [2021-09-03T23:39:19.732Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-09-03T23:39:19.732Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-03T23:39:19.859Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Fri, 03 Sep 2021 23:39:20 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:19.867Z] >>> HTTP REQUEST POST https://firebase.googleapis.com/v1beta1/projects/modern-news-app:addFirebase  
+ 
+[debug] [2021-09-03T23:39:21.496Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 03 Sep 2021 23:39:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:21.496Z] > refreshing access token with scopes: []
+[debug] [2021-09-03T23:39:21.497Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-03T23:39:21.629Z] <<< HTTP RESPONSE 200 {"date":"Fri, 03 Sep 2021 23:39:21 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-03T23:39:21.639Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz [none]
+[debug] [2021-09-03T23:39:22.049Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz 200
+[debug] [2021-09-03T23:39:22.049Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz {"name":"operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz"}
+[debug] [2021-09-03T23:39:22.565Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:22.565Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz [none]
+[debug] [2021-09-03T23:39:22.974Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz 200
+[debug] [2021-09-03T23:39:22.975Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz {"name":"operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz"}
+[debug] [2021-09-03T23:39:23.978Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:23.979Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz [none]
+[debug] [2021-09-03T23:39:24.434Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz 200
+[debug] [2021-09-03T23:39:24.434Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz {"name":"operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz"}
+[debug] [2021-09-03T23:39:26.446Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:26.447Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz [none]
+[debug] [2021-09-03T23:39:26.972Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz 200
+[debug] [2021-09-03T23:39:26.972Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz {"name":"operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz"}
+[debug] [2021-09-03T23:39:30.979Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2021-09-03T23:39:30.980Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz [none]
+[debug] [2021-09-03T23:39:31.439Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz 200
+[debug] [2021-09-03T23:39:31.439Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz {"name":"operations/workflows/OWUwYzNiN2MtMzRhZi00MDRjLWE0N2YtOGM1MzA1OTVlMDMz","done":true,"response":{"@type":"type.googleapis.com/google.firebase.service.v1beta1.FirebaseProject","projectId":"modern-news-app","projectNumber":"493878806778","displayName":"modern-news-app","name":"projects/modern-news-app","resources":{"hostingSite":"modern-news-app"}}}
+[info] 
+[info] === Your Firebase project is ready! ===
+[info] 
+[info] Project information:
+[info]    - Project ID: modern-news-app
+[info]    - Project Name: modern-news-app
+[info] 
+[info] Firebase console is available at
+[info] https://console.firebase.google.com/project/modern-news-app/overview
+[info] i  Using project modern-news-app (modern-news-app) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
