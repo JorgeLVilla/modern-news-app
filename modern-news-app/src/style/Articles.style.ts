@@ -96,17 +96,22 @@ export const OneHalfArticle = styled.a<IArticleProps>`
     text-decoration: none;
     color: white;
 
+    & .img-block{
+        height: 25em;
+        width: 46.5em;
+        margin-bottom: 1em;
+    }
+
     & img {
         height: 25em;
         width: 46.5em;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
-        margin-bottom: 1em;
         border-radius: 10px;
         object-fit: cover;
     }
 
     & .info-container {
-        height: 10em;
+        height: 13em;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
