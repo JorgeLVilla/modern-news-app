@@ -131,7 +131,7 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData, setEnlargeArticle, e
                                     setEnlargeArticle(null);
                                 }} 
                             />
-                            <div className="back-message">Go Back</div>
+                            <div className="back-message">Go Home</div>
                         </div>
                         <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
                     </TitleSection>
