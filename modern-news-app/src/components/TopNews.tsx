@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IEverythingNewsResponse } from "../models/Articles";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import Article from "./Article";
@@ -8,10 +8,11 @@ import { ArticlesStyled } from "./Main";
 
 interface TopNewsProps {
   topNewsData: IEverythingNewsResponse;
+  enlargeArticle: string | null;
+  setEnlargeArticle: Function;
 }
 
-const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
-  const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+const TopNews: React.FC<TopNewsProps> = ({ topNewsData, enlargeArticle, setEnlargeArticle }) => {
   
   let ArticleSize = 3;
   let articleIndex = 0;
@@ -35,8 +36,9 @@ const TopNews: React.FC<TopNewsProps> = ({ topNewsData }) => {
           <ArticlesStyled>
           {topNewsData.articles.map((article, i) => {
             articleLayout();
-            return (enlargeArticle !== i ? 
+            return (enlargeArticle !== `top-${i}` ? 
               <Article 
+              section="top"
                   index={i} 
                   mainColorCheck={mainColorCheck} 
                   setEnlargeArticle={setEnlargeArticle} 
