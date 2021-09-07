@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { EverythingNewsResponse, IEverythingNewsResponse } from "../models/Articles";
 import sports from '../assets/sports.png';
@@ -67,11 +66,11 @@ export const ArticlesStyled = styled.div`
 interface MainProps {
     newsData: IEverythingNewsResponse
     setNewsData: Function;
+    setEnlargeArticle: Function;
+    enlargeArticle: string | null;
 }
 
-const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
-
-    const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+const Main: React.FC<MainProps> = ({ newsData, setNewsData, setEnlargeArticle, enlargeArticle }) => {
     
     let ArticleSize: number = 3
     let articleIndex: number = 0
@@ -127,7 +126,10 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                                 className="back-button"
                                 src={back} 
                                 alt="" 
-                                onClick={() => setNewsData(new EverythingNewsResponse())} 
+                                onClick={() => {
+                                    setNewsData(new EverythingNewsResponse());
+                                    setEnlargeArticle(null);
+                                }} 
                             />
                             <div className="back-message">Go Home</div>
                         </div>
@@ -136,8 +138,9 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();
-                            return (enlargeArticle !== index ? 
+                            return (enlargeArticle !== (`main-${index}`) ? 
                             <Article 
+                                section="main"
                                 index={index} 
                                 mainColorCheck={mainColorCheck()} 
                                 setEnlargeArticle={setEnlargeArticle} 

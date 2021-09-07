@@ -8,9 +8,10 @@ interface IArticleProps {
     setEnlargeArticle: Function;
     article: IArticle;
     ArticleSize: number;
+    section: string;
 }
 
-const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArticle, article, ArticleSize }) => {
+const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArticle, article, ArticleSize, section }) => {
 
     let ArticleSizeFinal = OneArticle
 
@@ -31,7 +32,7 @@ const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArt
                 key={index} 
                 mainColor={mainColorCheck}
                 href={`#article-${index}`}
-                onClick={() => {setEnlargeArticle(index)}}
+                onClick={() => {setEnlargeArticle(`${section}-${index}`)}}
             >
                 <div className="img-block">
                     <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
