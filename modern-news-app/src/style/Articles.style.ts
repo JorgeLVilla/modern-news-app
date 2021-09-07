@@ -254,6 +254,7 @@ export const EnlargedArticle = styled.a<IEnlargeArticleProps>`
         right: 3em;
         top: 1em;
         box-shadow: 0 0 7px ${props => props.mainColor};
+        cursor: pointer;
     }
 
     & .info-container{
