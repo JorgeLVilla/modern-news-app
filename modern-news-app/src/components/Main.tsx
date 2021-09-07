@@ -129,7 +129,7 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                                 alt="" 
                                 onClick={() => setNewsData(new EverythingNewsResponse())} 
                             />
-                            <div className="back-message">Go Back</div>
+                            <div className="back-message">Go Home</div>
                         </div>
                         <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
                     </TitleSection>
