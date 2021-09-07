@@ -35,6 +35,7 @@ export const OneThirdArticle = styled.a<IArticleProps>`
         border-radius: 10px;
         opacity: 1;
         transition: opacity 1s ease-in-out;
+        object-fit: cover;
     }
 
     & .info-container{
@@ -101,6 +102,7 @@ export const OneHalfArticle = styled.a<IArticleProps>`
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-bottom: 1em;
         border-radius: 10px;
+        object-fit: cover;
     }
 
     & .info-container {
@@ -172,6 +174,7 @@ export const OneArticle = styled.a<IArticleProps>`
         border-radius: 10px;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-right: 2em;
+        object-fit: cover;
     }
 
     & .info-container {
