@@ -31,7 +31,7 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
 
   return (
     <>
-      <MainPageTitle>Top News</MainPageTitle>
+      <MainPageTitle>Today News</MainPageTitle>
         {todayNewsData.status ? (
           <ArticlesStyled>
           {todayNewsData.articles.map((article, i) => {
