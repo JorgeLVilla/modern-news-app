@@ -1,5 +1,5 @@
 import React from "react";
-import { IEverythingNewsResponse } from "../models/Articles";
+import { ITopNewsResponse } from "../models/TopNewsArticles";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import Article from "./Article";
 import ExpandedArticle from "./ExpandedArticle";
@@ -7,7 +7,7 @@ import { ArticlesStyled } from "./Main";
 
 
 interface TopNewsProps {
-  topNewsData: IEverythingNewsResponse;
+  topNewsData: ITopNewsResponse;
   enlargeArticle: string | null;
   setEnlargeArticle: Function;
 }

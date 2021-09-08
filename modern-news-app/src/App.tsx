@@ -1,8 +1,7 @@
 // interface classes
 import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
-import { ITopNewsResponse } from './models/Articles';
-import { fetchNewsData } from './util/fetchApi';
-import { fetchTodayNewsData } from './util/fetchApi';
+import { TopNewsRequest, ITopNewsResponse, TopNewsResponse } from './models/TopNewsArticles';
+import { fetchNewsData, fetchTodayNewsData, fetchTopNewsData } from './util/fetchApi';
 import { BodyContainer } from "./style/Wrappers.style";
 import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/TodayArticles';
 
@@ -15,7 +14,7 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
   const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
-  const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new EverythingNewsResponse())
+  const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new TopNewsResponse())
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
   const [enlargeArticle, setEnlargeArticle] = useState<string | null>(null)
 
@@ -38,9 +37,11 @@ const App = () => {
 
   const getTopNewsData = async (search: string) => {
     try {
-      const request = new EverythingNewsRequest({q: search});
-      const dataObject: ITopNewsResponse = await fetchNewsData(request);
+      const request = new TopNewsRequest({q: search, sources: "time"});
+      const dataObject: ITopNewsResponse = await fetchTopNewsData(request);
       setTopNewsData(dataObject);
+      console.log(dataObject)
+      return dataObject;
     } catch (error) {
       console.error(error)
     }
