@@ -19,7 +19,6 @@ export const fetchTodayNewsData = async (request: ITodayNewsRequest) => {
         // url for US news with todays date
         const todayNewsUrl = `https://newsapi.org/v2/top-headlines?country=${request.sources}&apiKey=${request.apiKey}&pageSize=${request.pageSize}`;
         return await fetch(todayNewsUrl).then(res => res.json());
-
     } catch (error) {
         console.error(error);
     }
@@ -29,9 +28,7 @@ export const fetchTopNewsData = async (request: ITopNewsRequest) => {
     try {
         // url for Time Magazine news site
         const topNewsUrl = `https://newsapi.org/v2/top-headlines?sources=${request.sources}&apiKey=${request.apiKey}&pageSize=${request.pageSize}`;
-        console.log(topNewsUrl)
         return await fetch(topNewsUrl).then(res => res.json());
-
     } catch (error) {
         console.error(error);
     }

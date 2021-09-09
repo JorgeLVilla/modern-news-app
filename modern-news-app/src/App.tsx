@@ -40,8 +40,8 @@ const App = () => {
       const request = new TopNewsRequest({q: search, sources: "time"});
       const dataObject: ITopNewsResponse = await fetchTopNewsData(request);
       setTopNewsData(dataObject);
-      console.log(dataObject)
       return dataObject;
+      
     } catch (error) {
       console.error(error)
     }
