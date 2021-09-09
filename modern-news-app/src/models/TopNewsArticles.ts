@@ -1,35 +1,32 @@
-export interface IEverythingNewsRequest {
+export interface ITopNewsRequest {
     apiKey: string;
+    country: string;
+    category?: string;
+    sources: string;
     q: string;
     pageSize: number;
-    sortBy: SortBy;
-    qInTitle: string;
-    sources: string[];
-    domains: string[];
-    excludeDomains: string[];
-    from: string;
-    to: string;
-    language: string;
     page: number;
 }
 
 type SortBy = "relevancy" | "popularity" | "publishedAt";
 
-export class EverythingNewsRequest implements IEverythingNewsRequest {
+export class TopNewsRequest implements ITopNewsRequest {
     apiKey= process.env.REACT_APP_NEWS_API_KEY || "";
     q= "";
     pageSize= 4;
     sortBy= "popularity" as SortBy;
     qInTitle= "";
-    sources= [];
+    sources= "";
     domains= [];
     excludeDomains= [];
     from= "";
     to= "";
     language= "en";
     page= 1;
+    country= "us";
+    category= "health";
 
-    constructor(configOverride?: Partial<IEverythingNewsRequest>) {
+    constructor(configOverride?: Partial<ITopNewsRequest>) {
         if(configOverride) {
             Object.assign(this, configOverride);
             this.q = encodeURIComponent(this.q);
@@ -54,16 +51,16 @@ export interface IArticle {
     content: string;
 }
 
-export interface IEverythingNewsResponse {
+export interface ITopNewsResponse {
     status: string | null;
     totalResults: number;
     articles: IArticle[];
-    search?: string;
 }
 
-export class EverythingNewsResponse implements IEverythingNewsResponse{
-    status= null;
+export class TopNewsResponse implements ITopNewsResponse {
+    status = null;
     totalResults= 0;
     articles= [];
-    search= "";
-}
+ }
+ 
+ 
