@@ -15,10 +15,12 @@ interface IArticleProps {
     mainColor?: string;
 }
 
-export const OneThirdArticle = styled.div<IArticleProps>`
+export const OneThirdArticle = styled.a<IArticleProps>`
     height: auto;
     width: 26em;
     margin: 3em 5em;
+    text-decoration: none;
+    color: white;
 
     & .img-block{
         height: 20em;
@@ -33,6 +35,7 @@ export const OneThirdArticle = styled.div<IArticleProps>`
         border-radius: 10px;
         opacity: 1;
         transition: opacity 1s ease-in-out;
+        object-fit: cover;
     }
 
     & .info-container{
@@ -86,21 +89,29 @@ export const OneThirdArticle = styled.div<IArticleProps>`
     }
 `
 
-export const OneHalfArticle = styled.div<IArticleProps>`
+export const OneHalfArticle = styled.a<IArticleProps>`
     height: auto;
     width: 46.5em;
     margin: 3em 4em;
+    text-decoration: none;
+    color: white;
+
+    & .img-block{
+        height: 25em;
+        width: 46.5em;
+        margin-bottom: 1em;
+    }
 
     & img {
         height: 25em;
         width: 46.5em;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
-        margin-bottom: 1em;
         border-radius: 10px;
+        object-fit: cover;
     }
 
     & .info-container {
-        height: 10em;
+        height: 13em;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         background-color: black;
         border-radius: 10px;
@@ -146,13 +157,15 @@ export const OneHalfArticle = styled.div<IArticleProps>`
     }
 `
 
-export const OneArticle = styled.div<IArticleProps>`
+export const OneArticle = styled.a<IArticleProps>`
     height: 28em;
     width: 100%;
     margin: 3em 5em;
     display: flex;
     justify-content: center;
     flex-direction: row;
+    text-decoration: none;
+    color: white;
     
     & .img-block{
         width: 50em;
@@ -166,6 +179,7 @@ export const OneArticle = styled.div<IArticleProps>`
         border-radius: 10px;
         box-shadow: 4px 4px 7px ${props => props.mainColor};
         margin-right: 2em;
+        object-fit: cover;
     }
 
     & .info-container {
@@ -220,12 +234,14 @@ interface IEnlargeArticleProps {
     mainColor: string;
 }
 
-export const EnlargedArticle = styled.div<IEnlargeArticleProps>`
+export const EnlargedArticle = styled.a<IEnlargeArticleProps>`
     height: auto;
     width: 103.5em;
     margin: 3em 5em;
     display: flex;
     flex-direction: row;
+    text-decoration: none;
+    color: white;
 
     & img{
         height: 30em;
@@ -246,6 +262,7 @@ export const EnlargedArticle = styled.div<IEnlargeArticleProps>`
         right: 3em;
         top: 1em;
         box-shadow: 0 0 7px ${props => props.mainColor};
+        cursor: pointer;
     }
 
     & .info-container{

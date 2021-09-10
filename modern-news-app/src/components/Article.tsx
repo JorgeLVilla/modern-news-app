@@ -1,5 +1,6 @@
 import { OneArticle, OneHalfArticle, OneThirdArticle } from "../style/Articles.style";
 import { IArticle } from "../models/Articles";
+import noimageavailable from "../assets/noimageavailable.jpg";
 
 interface IArticleProps {
     index: number;
@@ -7,9 +8,10 @@ interface IArticleProps {
     setEnlargeArticle: Function;
     article: IArticle;
     ArticleSize: number;
+    section: string;
 }
 
-const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArticle, article, ArticleSize }) => {
+const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArticle, article, ArticleSize, section }) => {
 
     let ArticleSizeFinal = OneArticle
 
@@ -29,10 +31,11 @@ const Article: React.FC<IArticleProps> = ({ index, mainColorCheck, setEnlargeArt
             <ArticleSizeFinal
                 key={index} 
                 mainColor={mainColorCheck}
-                onClick={() => {setEnlargeArticle(index)}}
+                href={`#article-${index}`}
+                onClick={() => {setEnlargeArticle(`${section}-${index}`)}}
             >
                 <div className="img-block">
-                    <img src={article.urlToImage} alt="What the article is trying to explain"/>
+                    <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
                     <span className="click-here">Click to see more</span>
                 </div>
                 <div className="info-container">

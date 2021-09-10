@@ -1,5 +1,6 @@
 import { IArticle } from "../models/Articles";
 import { EnlargedArticle } from "../style/Articles.style";
+import noimageavailable from "../assets/noimageavailable.jpg"
 
 interface IExpandedArticleProps {
     article: IArticle;
@@ -10,8 +11,8 @@ interface IExpandedArticleProps {
 
 const ExpandedArticle: React.FC<IExpandedArticleProps> = ({ article, index, mainColorCheck, setEnlargeArticle }) => {
     return(
-        <EnlargedArticle key={index} mainColor={mainColorCheck}>
-            <img src={article.urlToImage} alt="What the article is trying to explain"/>
+        <EnlargedArticle key={index} mainColor={mainColorCheck} id={`article-${index}`}>
+            <img src={article.urlToImage? article.urlToImage : noimageavailable} alt={article.description}/>
             <div className="info-container">
                 <div>
                     <div className="title" >{article.title}</div>

@@ -1,8 +1,7 @@
 // interface classes
 import { IEverythingNewsResponse, EverythingNewsRequest, EverythingNewsResponse } from './models/Articles';
-import { ITopNewsResponse } from './models/Articles';
-import { fetchNewsData } from './util/fetchApi';
-import { fetchTodayNewsData } from './util/fetchApi';
+import { TopNewsRequest, ITopNewsResponse, TopNewsResponse } from './models/TopNewsArticles';
+import { fetchNewsData, fetchTodayNewsData, fetchTopNewsData } from './util/fetchApi';
 import { BodyContainer } from "./style/Wrappers.style";
 import { ITodayNewsResponse, TodayNewsRequest, TodayNewsResponse } from './models/TodayArticles';
 
@@ -15,8 +14,9 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
   const [newsData, setNewsData] = useState<IEverythingNewsResponse>(new EverythingNewsResponse())
-  const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new EverythingNewsResponse())
+  const [topNewsData, setTopNewsData] = useState<ITopNewsResponse>(new TopNewsResponse())
   const [todayNewsData, setTodayNewsData] = useState<ITodayNewsResponse>(new TodayNewsResponse());
+  const [enlargeArticle, setEnlargeArticle] = useState<string | null>(null)
 
   // news data call for top section of home page
 
@@ -27,7 +27,7 @@ const App = () => {
 
   const getNewsData = async (search: string) => {
     try {
-      const request = new EverythingNewsRequest({q: search});
+      const request = new EverythingNewsRequest({q: search, pageSize: 18});
       const dataObject: IEverythingNewsResponse = await fetchNewsData(request);
       setNewsData(dataObject);
     } catch (error) {
@@ -37,9 +37,11 @@ const App = () => {
 
   const getTopNewsData = async (search: string) => {
     try {
-      const request = new EverythingNewsRequest({q: search});
-      const dataObject: ITopNewsResponse = await fetchNewsData(request);
+      const request = new TopNewsRequest({q: search, sources: "time"});
+      const dataObject: ITopNewsResponse = await fetchTopNewsData(request);
       setTopNewsData(dataObject);
+      return dataObject;
+      
     } catch (error) {
       console.error(error)
     }
@@ -67,17 +69,28 @@ const App = () => {
       boxSizing: "border-box",
       }}>
       <Navbar 
+        setEnlargeArticle={setEnlargeArticle}
         getNewsData={getNewsData}
         setNewsData={setNewsData}
       />
       {newsData.status ?
       <Main 
+        enlargeArticle={enlargeArticle}
+        setEnlargeArticle={setEnlargeArticle}
         newsData={newsData}
         setNewsData={setNewsData}
         /> :
       <BodyContainer>
-        <TopNews topNewsData={topNewsData} />
-        <TodayNews todayNewsData={todayNewsData}/>
+        <TopNews 
+          topNewsData={topNewsData} 
+          enlargeArticle={enlargeArticle}
+          setEnlargeArticle={setEnlargeArticle}
+        />
+        <TodayNews 
+          todayNewsData={todayNewsData} 
+          enlargeArticle={enlargeArticle}
+          setEnlargeArticle={setEnlargeArticle}
+        />
       </BodyContainer>
       }
     </div>

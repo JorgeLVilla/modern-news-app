@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ITodayNewsResponse } from "../models/TodayArticles";
 import { MainPageTitle } from "../style/SectionTitles.style";
 import Article from "./Article";
@@ -8,11 +8,12 @@ import { ArticlesStyled } from "./Main";
 // set type for todayNewsData that will be accessed as props
 interface MainProps {
   todayNewsData: ITodayNewsResponse;
+  enlargeArticle: string | null;
+  setEnlargeArticle: Function;
 }
 
 // enable react props
-const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
-  const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+const TodayNews: React.FC<MainProps> = ({ todayNewsData, enlargeArticle, setEnlargeArticle }) => {
 
   let ArticleSize = 3;
   let articleIndex = 0;
@@ -31,13 +32,14 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
 
   return (
     <>
-      <MainPageTitle>Today News</MainPageTitle>
-      <ArticlesStyled>
+      <MainPageTitle>Today's Top News</MainPageTitle>
         {todayNewsData.status ? (
-          todayNewsData.articles.map((article, i) => {
+          <ArticlesStyled>
+          {todayNewsData.articles.map((article, i) => {
             articleLayout();
-            return (enlargeArticle !== 1 ? 
+            return (enlargeArticle !== `today-${i}` ? 
               <Article 
+                  section="today"
                   index={i} 
                   mainColorCheck={mainColorCheck} 
                   setEnlargeArticle={setEnlargeArticle} 
@@ -50,11 +52,11 @@ const TodayNews: React.FC<MainProps> = ({ todayNewsData }) => {
                   mainColorCheck={mainColorCheck} 
                   setEnlargeArticle={setEnlargeArticle}
               />)
-          })
+          })}
+          </ArticlesStyled>
         ) : (
           <div>Loading...</div>
         )}
-      </ArticlesStyled>
     </>
   );
 };

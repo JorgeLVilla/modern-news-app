@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { EverythingNewsResponse, IEverythingNewsResponse } from "../models/Articles";
 import sports from '../assets/sports.png';
@@ -26,6 +25,7 @@ const TitleSection = styled.div`
             position: relative;
             top: 0.5em;
             height: 4.5em;
+            cursor: pointer;
         }
 
         & .back-message{
@@ -66,11 +66,11 @@ export const ArticlesStyled = styled.div`
 interface MainProps {
     newsData: IEverythingNewsResponse
     setNewsData: Function;
+    setEnlargeArticle: Function;
+    enlargeArticle: string | null;
 }
 
-const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
-
-    const [enlargeArticle, setEnlargeArticle] = useState<number | null>(null)
+const Main: React.FC<MainProps> = ({ newsData, setNewsData, setEnlargeArticle, enlargeArticle }) => {
     
     let ArticleSize: number = 3
     let articleIndex: number = 0
@@ -95,11 +95,11 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
     // Setting the Title of the Main page based off of what button was pressed
     const searchTitleCheck = () => {
         switch(newsData.search){
-            case "sports": return <div>Sports<img src={sports} alt="football"/></div>;
-            case "entertainment": return <>Entertainment<img src={entertainment} alt="camera"/></>;
-            case "business": return <>Business<img src={business} alt="stock chart"/></>;
-            case "health": return <>Health<img src={health} alt="heart"/></>;
-            case "world": return <>World<img src={world} alt="world"/></>;
+            case "sports": return <div>Sports<img src={sports} alt=""/></div>;
+            case "entertainment": return <>Entertainment<img src={entertainment} alt=""/></>;
+            case "business": return <>Business<img src={business} alt=""/></>;
+            case "health": return <>Health<img src={health} alt=""/></>;
+            case "world": return <>World<img src={world} alt=""/></>;
             default : return <>You searched for {newsData.search}</>;
         }
     }
@@ -125,18 +125,22 @@ const Main: React.FC<MainProps> = ({ newsData, setNewsData }) => {
                             <img 
                                 className="back-button"
                                 src={back} 
-                                alt="back arrow button to click and go bac to the home page" 
-                                onClick={() => setNewsData(new EverythingNewsResponse())} 
+                                alt="" 
+                                onClick={() => {
+                                    setNewsData(new EverythingNewsResponse());
+                                    setEnlargeArticle(null);
+                                }} 
                             />
-                            <div className="back-message">Go Back</div>
+                            <div className="back-message">Go Home</div>
                         </div>
                         <TitleStyled style={{ color : `${mainColorCheck()}`}}>{searchTitleCheck()}</TitleStyled>
                     </TitleSection>
                     <ArticlesStyled>
                         {newsData.articles.map((article, index) => {
                             articleLayout();
-                            return (enlargeArticle !== index ? 
+                            return (enlargeArticle !== (`main-${index}`) ? 
                             <Article 
+                                section="main"
                                 index={index} 
                                 mainColorCheck={mainColorCheck()} 
                                 setEnlargeArticle={setEnlargeArticle} 

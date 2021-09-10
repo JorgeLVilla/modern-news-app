@@ -78,9 +78,10 @@ export const NavButtonsStyle = styled.nav`
 interface NavProps {
     getNewsData: Function;
     setNewsData: Function;
+    setEnlargeArticle: Function;
 }
 
-const Navbar: React.FC<NavProps> = ({ getNewsData, setNewsData }) => {
+const Navbar: React.FC<NavProps> = ({ getNewsData, setNewsData, setEnlargeArticle }) => {
 
     return (
         <NavBarStyle>
@@ -88,31 +89,46 @@ const Navbar: React.FC<NavProps> = ({ getNewsData, setNewsData }) => {
             <NavButtonsStyle>
                 <ButtonContainer>
                     <NavButton>
-                        <img onClick={() => getNewsData("sports")} src={sports} alt="button link for sports search" />
+                        <img onClick={() => {
+                            setEnlargeArticle(null);
+                            getNewsData("sports");
+                        }} src={sports} alt="button link for sports search" />
                     </NavButton>
                     <div style={{ color : "#FFA55C"}}>Sports</div>
                 </ButtonContainer>
                 <ButtonContainer>
                     <NavButton>
-                        <img onClick={() => getNewsData("entertainment")} src={entertainment} alt="button link for entertainment search" />
+                        <img onClick={() => {
+                            setEnlargeArticle(null);
+                            getNewsData("entertainment");
+                        }} src={entertainment} alt="button link for entertainment search" />
                     </NavButton>
                     <div style={{ color : "#1FC8A3"}}>Entertainment</div>
                 </ButtonContainer>
                 <ButtonContainer>
                     <NavButton>
-                        <img onClick={() => getNewsData("business")} src={business} alt="button link for business search" />
+                        <img onClick={() => {
+                            setEnlargeArticle(null);
+                            getNewsData("business");
+                        }} src={business} alt="button link for business search" />
                     </NavButton>
                     <div style={{ color : "#6F81D8"}}>Business</div>
                 </ButtonContainer>
                 <ButtonContainer>
                     <NavButton>
-                        <img onClick={() => getNewsData("health")} src={health} alt="button link for health search" />
+                        <img onClick={() => {
+                            setEnlargeArticle(null);
+                            getNewsData("health");
+                        }} src={health} alt="button link for health search" />
                     </NavButton>
                     <div style={{ color : "#00C0C8"}}>Health</div>
                 </ButtonContainer>
                 <ButtonContainer>
                     <NavButton>
-                        <img onClick={() => getNewsData("world")} src={world} alt="button link for world search" />
+                        <img onClick={() => {
+                            setEnlargeArticle(null);
+                            getNewsData("world");
+                        }} src={world} alt="button link for world search" />
                     </NavButton>
                     <div style={{ color : "#FF9A86"}}>World</div>
                 </ButtonContainer>
